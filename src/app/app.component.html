@@ -1,0 +1,17 @@
+<app-appheader *ngIf="identity && identity.sub"></app-appheader>
+<app-appmenu *ngIf="identity && identity.sub"></app-appmenu>
+
+ <!-- Content Wrapper. Contains page content -->
+  <div [ngClass]="{'wrapperLogin': logged === false, 'content-wrapper': logged === true}" id="page-container">
+    <!-- Content Header (Page header) -->
+    
+
+   
+    	<router-outlet></router-outlet>
+   
+   </div>
+ 
+
+<app-appfooter></app-appfooter>
+
+

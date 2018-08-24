@@ -1,0 +1,81 @@
+
+<!-- Title content -->
+<section class="content-header">
+	<h1>{{ title }} <small>it all starts here</small></h1>
+	<ol class="breadcrumb">
+		<li class="active"><a href="#"><i class="fa fa-dashboard"></i> Main</a></li>
+	</ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<div class="col-sm-10 col-xs-12">
+      	<div class="box box-warning ">
+            <div class="box-header with-border">
+				<h3 class="box-title">
+					Register User 
+					<span class="alert alert-success" *ngIf="status=='success'">Record saved!</span>
+					<span class="alert alert-danger" *ngIf="status=='error'">Error!</span>
+				</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form #newUserForm="ngForm" (ngSubmit)="onSubmit()">
+				<div class="box-body">
+					<div class="row">
+
+					  	<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="form-group">
+							  <label for="id">* username:</label>
+							  <input type="text" class="form-control input-sm" id="username" name="username" #username="ngModel" [(ngModel)] = "user.username" placeholder="username..." required>
+
+							  <span class="text-small" *ngIf="!username.valid && username.touched">El password no es válido</span>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="form-group">
+							  	<label for="id">* Password:</label>
+							  	<input type="text" class="form-control input-sm" id="password" name="password" placeholder="password..." #password="ngModel" [(ngModel)] = "user.password" required>
+							  	
+							  	<span class="text-small" *ngIf="!password.valid && password.touched">El password no es válido</span>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="form-group ">
+								<label>Group</label>
+							  	<select class="form-control input-sm" id="group" name="group" #group="ngModel" [(ngModel)] = "user.group">
+									<option value="">Select Group</option>
+									<option value="1">Admin</option>					
+							  	</select>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="form-group ">
+								<label>Membership</label>
+							  	<select class="form-control input-sm" id="membership" name="membership" #membership="ngModel" [(ngModel)] = "user.membership">
+									<option value="">Select membership</option>
+									<option value="1">membership</option>	
+							  	</select>
+							</div>
+						</div>
+								 
+					</div>
+					<!-- /.row -->
+				</div>				
+				<!-- /.box-body -->
+
+				<div class="box-footer">
+					<button type="submit" class="btn btn-app" [disabled] = "!newUserForm.form.valid">
+		           		<i class="fa fa-hdd-o"></i> Save
+		         	</button>
+				</div>
+				<!-- /.box-footer -->
+			</form>
+         </div>
+         <!-- /.box-warning -->
+     </div>
+     <!-- /.col -->
+</section>

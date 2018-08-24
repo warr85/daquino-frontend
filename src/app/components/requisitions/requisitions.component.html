@@ -1,0 +1,207 @@
+<section class="content-header">
+      <h1>
+        {{ title }}
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Main</a></li>        
+      </ol>
+      
+    </section>
+<!--<form id="purchase_requisition" role="form">-->
+    <!-- Main content -->
+    <section class="content">
+
+     <div class="col-sm-10 col-xs-12">
+      	<div class="box box-warning ">
+            <div class="box-header with-border">
+              <h3 class="box-title">Quick Example</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            
+              <div class="box-body">
+         		 <div class="row">
+              
+			      	<div class="col-xs-12 col-sm-6 col-md-3">
+					    <div class="form-group">
+					      <label for="id">Requisition ID:</label>
+					      <input type="text" class="form-control input-sm" name="id" id="id" value="1001" readonly>
+					    </div>
+					</div>
+					
+					
+					<div class="col-xs-12 col-sm-6 col-md-3">
+					    <div class="form-group">
+					      <label>Purchase Type</label>
+					      <select id="purchase_type" class="form-control input-sm" id="type" name="type">
+					        <option value="">Select</option>
+					        <option>option 2</option>
+					        <option>option 3</option>
+					        <option>option 4</option>
+					        <option>option 5</option>
+					      </select>
+					    </div>
+					 </div>
+						 
+					  <div class="col-xs-12 col-md-6">
+					    <div class="form-group ">
+					      <label>Delivery Address</label>
+					      <select class="form-control input-sm" id="address" name="address">
+					        <option value="">Select Address</option>
+					        <option>option 2</option>
+					        <option>option 3</option>
+					        <option>option 4</option>
+					        <option>option 5</option>
+					      </select>
+					    </div>
+					 </div>
+					 
+					 <div class="col-xs-12 col-sm-4 col-md-3">					
+						<div class="form-group">
+                			<label>Request Date:</label>
+						    <div class="input-group date">
+						      <div class="input-group-addon">
+						        <i class="fa fa-calendar"></i>
+						      </div>
+						      <input type="text" class="form-control pull-right input-sm" id="request_datepicker" name="request_datepicker" placeholder="Select Date" readonly>
+						    </div>
+						    <!-- /.input group -->
+					    </div>					
+					</div>
+					 
+					 <div class="col-xs-12 col-md-3">
+					    <div class="form-group ">
+					      <label>Contract</label>
+					      <select class="form-control input-sm" id="contract" name="contract">
+					        <option value="">Select contract</option>
+					        <option>option 2</option>
+					        <option>option 3</option>
+					        <option>option 4</option>
+					        <option>option 5</option>
+					      </select>
+					    </div>
+					 </div>
+					 
+					  <div class="col-xs-12 col-sm-8 col-md-6 ">
+				    <div class="form-group">
+				      <label for="name">Request name:</label>
+				      <input type="text" class="form-control input-sm" id="name" placeholder="Name..." name="name">
+				    </div>
+				  </div>
+				</div>
+				 <!-- /.row -->
+				
+				
+				<div class="row">
+				
+					
+					
+					 <div class="col-xs-12 col-sm-4 col-md-3">
+						    <div class="form-group ">
+						      <label>Ware Type</label>
+						      <select class="form-control input-sm" id="ware" name="ware">
+						        <option value="">Select</option>
+						        <option>option 2</option>
+						        <option>option 3</option>
+						        <option>option 4</option>
+						        <option>option 5</option>
+						      </select>
+						    </div>
+					</div>
+					
+					<div class="col-xs-12 col-sm-4 col-md-6 col-lg-6  pull-right">	
+					
+						<div class="form-group">
+				          <label>Note</label>
+				          <textarea class="form-control" rows="4" placeholder="Note ..." id="note" name="note"></textarea>
+				        </div>
+							
+				       <!-- <div class="form-group">
+				          <label for="exampleInputFile">File input</label>
+				         <input type="file" id="exampleInputFile">
+				          <button class="btn btn-warning btn-block">Upload File!</button>
+
+				          <p class="help-block">view memo.</p>
+				        </div>    -->            
+	               </div>
+	               
+	               
+	               
+	               
+	              
+				  
+				  <!--<div class="col-xs-12 col-sm-8 col-md-3 pull-left">
+				    <div class="form-group">
+				      <label for="id">Description:</label>
+				      <input type="text" class="form-control input-sm" id="id" placeholder="Description...">
+				    </div>
+				  </div>-->
+				  
+				  <div class="col-xs-12 col-sm-8 col-md-3 pull-left">
+				    <div class="form-group">
+				      <label for="department">Department:</label>
+				      <input type="text" class="form-control input-sm" id="department" placeholder="Department..." name="department" onkeypress="return alphabetOnly(this, event)" maxlength="30"> 
+				    </div>
+				  </div>
+				  
+				  <div class="col-xs-12 col-sm-8 col-md-3 pull-left">
+				    <div class="form-group">
+				      <label for="quantity">Quantity:</label>
+				      <input type="number" class="form-control input-sm" id="quantity" placeholder="Numbers..." name="quantity" min="1">
+				    </div>
+				  </div>
+				  
+				  <div class="col-xs-12 col-sm-5 col-md-3 pull-left">
+				    <div class="form-group">
+				      <label for="phone">Phone Number:</label>
+				      <input type="text" class="form-control input-sm" id="phone" name="phone" placeholder="Phone..." required maxlength="15">
+				    </div>
+				  </div>
+				  
+				 <!-- <div class="col-xs-12 col-sm-8 col-md-3 pull-left">
+				    <div class="form-group">
+				      <label for="id">Memo:</label>
+				      <input type="text" class="form-control input-sm" id="id" placeholder="Memo...">
+				    </div>
+				  </div>-->
+	               
+	               
+              	</div>
+				 <!-- /.row -->											
+				
+				
+				
+				
+				
+				</div>
+				
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+		         <button type="submit" class="btn btn-app" >
+		           <i class="fa fa-hdd-o"></i> Save
+		         </button>
+		         
+		         <a class="btn btn-app ">
+		           <i class="fa fa-search"></i> Search
+		         </a>
+		         
+		         <a class="btn btn-app " disabled>
+		           <i class="fa fa-refresh "></i> Update
+		         </a>
+		         
+		         <a class="btn btn-app ">
+		           <i class="fa fa-plus-square-o"></i> New
+		         </a>
+		         
+		         <a class="btn btn-app " disabled>
+		           <i class="fa fa-file-text"></i> Report
+		         </a>                
+              </div>
+           
+          </div>
+ 
+</div>
+    </section>
+    <!-- </form>-->

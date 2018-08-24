@@ -1,0 +1,266 @@
+/* You can add global styles to this file, and also import other style files */
+
+  	/*.skin-yellow .main-header .navbar{
+  		background: url('../img/top4.jpg') no-repeat;
+  		background-size: cover;
+  	}*/
+  
+  	.skin-yellow .sidebar-menu > li > .treeview-menu {
+  		background: #f1dfc2;  		
+  	}
+  	
+  	.skin-yellow .sidebar-menu .treeview-menu>li.active>a, .skin-yellow .sidebar-menu .treeview-menu>li>a:hover{
+  		color: red;
+  	}
+  	
+  	.skin-yellow .sidebar-menu .treeview-menu>li>a{
+  		color: black;
+  	}
+  	
+  	.main-sidebar {	   
+	    padding-top: 75px;	    
+	} 
+  	
+  	
+  	/* quita esto si quieres el header mas pequeño */
+  	.main-header .logo {	   
+	    height: 75px;	    
+	    line-height: 75px;	   
+	}
+	
+	
+	.main-header .sidebar-toggle{
+		padding: 27px 15px;
+	}
+	
+	.navbar-nav>li>a{
+		line-height: 45px;
+		font-size: 18px;
+	}
+	
+	.main-header .navbar .nav>li>a>.label{
+		top: 22px;
+	}
+	
+	.navbar-nav>.user-menu .user-image{
+		margin-top: 8px;
+		width: 35px;
+    		height: 35px;
+	}
+	
+	
+
+	@media (max-width: 991px){
+		.navbar-custom-menu .navbar-nav>li>a {
+		    line-height: 45px;
+		    font-size: 18px;
+		}
+	}
+	
+	@media (max-width: 767px){
+		.content-header {	   
+	    		padding: 65px 15px 0 15px;
+		}
+		.main-sidebar {
+    			padding-top: 150px;
+		}
+		
+		.navbar-nav>.user-menu .user-image {
+    			margin-top: 0px;
+		}
+	}
+	
+	
+	/* hasta aquí  y debes cambiar la imagen de daquino a 45 abajo*/
+	
+	
+	
+	.daquino-image{
+		max-width: 70px;
+	}
+	
+	.navbar-nav{
+		padding-right: 55px;
+	}
+	
+	
+	.form-group {
+    		margin-bottom: 5px;
+	}
+	
+	
+	.btn-app {
+	    min-width: 65px;
+	    height: 50px;
+	    padding: 8px 5px;
+	    text-align: center;
+	    color: #000!important;
+	    border: 1px solid #000;
+	    background-color: #f4f4f4;
+	    font-size: 12px;
+	}
+	
+	/*[hidden] {
+  display: none !important;
+}*/
+
+.spinner {
+  height: 50px;
+  width: 50px;
+  margin: 50px auto;
+  position: relative;
+  animation: invert 2s infinite steps(2, end);
+}
+.ball {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  background: #ff783c;
+}
+.ball-1 {
+  animation: ball1 1s infinite alternate linear;
+}
+.ball-2 {
+  animation: ball2 1s infinite alternate linear;
+}
+.ball-3 {
+  animation: ball3 1s infinite alternate linear;
+}
+.ball-4 {
+  animation: ball4 1s infinite alternate linear;
+}
+@keyframes invert {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes ball1 {
+  12% {
+    transform: none;
+  }
+  26% {
+    transform: translateX(25%) scale(1, 0.8);
+  }
+  40% {
+    transform: translateX(50%) scale(0.8, 0.8);
+  }
+  60% {
+    transform: translateX(50%) scale(0.8, 0.8);
+  }
+  74% {
+    transform: translate(50%, 25%) scale(0.6, 0.8);
+  }
+  88% {
+    transform: translate(50%, 50%) scale(0.6, 0.6);
+  }
+  100% {
+    transform: translate(50%, 50%) scale(0.6, 0.6);
+  }
+}
+@keyframes ball2 {
+  12% {
+    transform: none;
+  }
+  26% {
+    transform: translateX(25%) scale(1, 0.8);
+  }
+  40% {
+    transform: translateX(50%) scale(0.8, 0.8);
+  }
+  60% {
+    transform: translateX(50%) scale(0.8, 0.8);
+  }
+  74% {
+    transform: translate(50%, -25%) scale(0.6, 0.8);
+  }
+  88% {
+    transform: translate(50%, -50%) scale(0.6, 0.6);
+  }
+  100% {
+    transform: translate(50%, -50%) scale(0.6, 0.6);
+  }
+}
+@keyframes ball3 {
+  12% {
+    transform: none;
+  }
+  26% {
+    transform: translateX(-25%) scale(1, 0.8);
+  }
+  40% {
+    transform: translateX(-50%) scale(0.8, 0.8);
+  }
+  60% {
+    transform: translateX(-50%) scale(0.8, 0.8);
+  }
+  74% {
+    transform: translate(-50%, 25%) scale(0.6, 0.8);
+  }
+  88% {
+    transform: translate(-50%, 50%) scale(0.6, 0.6);
+  }
+  100% {
+    transform: translate(-50%, 50%) scale(0.6, 0.6);
+  }
+}
+@keyframes ball4 {
+  12% {
+    transform: none;
+  }
+  26% {
+    transform: translateX(-25%) scale(1, 0.8);
+  }
+  40% {
+    transform: translateX(-50%) scale(0.8, 0.8);
+  }
+  60% {
+    transform: translateX(-50%) scale(0.8, 0.8);
+  }
+  74% {
+    transform: translate(-50%, -25%) scale(0.6, 0.8);
+  }
+  88% {
+    transform: translate(-50%, -50%) scale(0.6, 0.6);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.6, 0.6);
+  }
+}
+
+.fakeLoader{
+	z-index:100!important;
+}
+
+.small-box > .inner {
+    padding: 7px 0px 0px 10px;
+}
+
+.small-box h3 {
+    font-size: 27px;
+    font-weight: bold;
+    margin: 0px 0 -5px 0;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.small-box .icon {
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    position: absolute;
+    top: -9px;
+    right: 34px;
+    z-index: 0;
+    font-size: 63px;
+    color: rgba(0, 0, 0, 0.15);
+}
+
+.small-box:hover .icon {
+  font-size: 80px;
+}
+
+
+

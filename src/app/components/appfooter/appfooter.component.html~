@@ -1,0 +1,7 @@
+ <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version Alpha</b> 0.0.1
+    </div>
+    <strong>Copyright &copy; 2018 <a href="#">Upper Data Solutions</a>.</strong> Automatic, safe and productive systems . All rights
+    reserved.
+  </footer>

@@ -1,0 +1,204 @@
+<section class="content-header">
+      <h1>
+        {{ title }}
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Main</a></li>        
+      </ol>
+      
+    </section>
+<!--<form id="purchase_contract" role="form">-->
+    <!-- Main content -->
+    <section class="content">
+		<div class="row">
+			 <div class="col-sm-9 col-xs-12">
+			  	<div class="box box-warning ">
+				    <div class="box-header with-border">
+				      <h3 class="box-title">Work in progress</h3>
+				    </div>
+				    <!-- /.box-header -->
+				    <!-- form start -->
+				   
+				      <div class="box-body">
+				 		 <div class="row">
+				      
+						  	<div class="col-xs-12 col-sm-6 col-md-4">
+								<div class="form-group">
+								  <label for="id">* Contract ID:</label>
+								  <input type="text" class="form-control input-sm" id="id" name="id" value="1001" readonly>
+								</div>
+							</div>
+							
+					
+							<div class="col-xs-12 col-sm-6 col-md-4">					
+								<div class="form-group">
+				        			<label>* Signature Date:</label>
+									<div class="input-group date">
+									  <div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									  </div>
+									  <input type="text" class="form-control pull-right input-sm" id="signature_datepicker" name="signature_datepicker" placeholder="select date" readonly>
+									</div>
+									<!-- /.input group -->
+								</div>					
+							</div>
+					
+							<div class="col-xs-12 col-sm-6 col-md-4">		
+								<div class="form-group">
+									<label>Start/Exp. Date:</label>
+
+									<div class="input-group">
+									  <div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									  </div>
+									  <input type="text" class="form-control pull-right input-sm" id="star_exp_daterange" placeholder="select date range" name="star_exp_daterange" readonly>
+									</div>
+									<!-- /.input group -->
+				      			</div>
+							</div>
+					
+					
+							<div class="col-xs-12 col-sm-6 col-md-4">
+								<div class="form-group">
+								  <label for="contracting_party">* Contracting Party:</label>
+								  <input type="text" class="form-control input-sm" id="contracting_party" name="contracting_party" value="Daquino's Import" readonly>
+								</div>
+							</div>
+								 
+							  <div class="col-xs-12 col-sm-6 col-md-4">
+								<div class="form-group ">
+								  <label>Contracted Party</label>
+								  <select class="form-control input-sm" id="contracted_party" name="contracted_party">
+									<option value="">Select</option>
+									<option>option 2</option>
+									<option>option 3</option>
+									<option>option 4</option>
+									<option>option 5</option>
+								  </select>
+								</div>
+							 </div>
+							 
+						</div>
+						 <!-- /.row -->
+				
+				
+				
+				
+				
+						</div>
+				
+				      <!-- /.box-body -->
+				      
+					</div>
+					<!-- /.box-warning -->
+				</div>
+				<!-- /.box-col -->
+			</div>
+			<!-- /.row -->
+			
+			<div class="row">
+		 		<div class="col-sm-9 col-xs-12">
+		  			<div class="box box-warning ">
+						   <div class="box-header with-border">
+							<h3 class="box-title">Agreement</h3>
+						   </div>
+						   <!-- /.box-header -->						   
+		        
+						    	 <div class="box-body">
+								
+					
+								  	<div class="col-xs-12 col-sm-6 col-md-4">
+											<div class="form-group ">
+											  <label>Product</label>
+											  <select class="form-control input-sm" name="product" id="product">
+												<option value="">Select Product</option>
+												<option>option 2</option>
+												<option>option 3</option>
+												<option>option 4</option>
+												<option>option 5</option>
+											  </select>
+											</div>
+									 </div>
+				
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<div class="form-group">
+										  <label for="quantity">* Quantity:</label>
+										  <input type="number" data-bv-numeric="true" min="1" class="form-control input-sm" name="quantity" id="quantity"  >
+										</div>
+									</div>
+				
+						
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<div class="form-group ">
+										  <label>Type</label>
+										  <select class="form-control input-sm" id="type" name="type">
+											<option value="">Select type</option>
+											<option>option 2</option>
+											<option>option 3</option>
+											<option>option 4</option>
+											<option>option 5</option>
+										  </select>
+										</div>
+									 </div>
+										 
+										 
+									 <div class="col-xs-12 col-sm-6 col-md-4">
+										<div class="form-group ">
+										  <label>Color</label>
+										  <select class="form-control input-sm" id="color" name="color">
+											<option value="">Select Color</option>
+											<option>option 2</option>
+											<option>option 3</option>
+											<option>option 4</option>
+											<option>option 5</option>
+										  </select>
+										</div>
+									 </div>
+
+									 <div class="col-xs-12 col-sm-6 col-md-4">
+									 	 <div class="form-group">
+										    <label class="control-label">Contract file</label>                     
+							        				<input type="file" class="form-control input-sm" name="contract_file" id="contract_file" />
+							        				<span class="help-block">Choose a pdf file.</span>							   				
+										</div>
+								  	 </div>  
+				        
+				        
+						
+					 		</div>
+					 		<!-- /.body -->					 			
+					           <div class="box-footer">
+							    <button type="submit" class="btn btn-app  ">
+								 <i class="fa fa-hdd-o"></i> Save
+							    </button>
+							    
+							    <a class="btn btn-app ">
+								 <i class="fa fa-search"></i> Search
+							    </a>
+							    
+							    <a class="btn btn-app ">
+								 <i class="fa fa-refresh "></i> Update
+							    </a>
+							    
+							    <a class="btn btn-app ">
+								 <i class="fa fa-plus-square-o"></i> New
+							    </a>
+							    
+							    <a class="btn btn-app ">
+								 <i class="fa fa-file-text"></i> Report
+							    </a>                
+              					</div>
+              					<!-- /.body-gooter -->		
+           
+         					 </div>
+         					 <!-- /.box-warning -->	
+					</div>
+					<!-- /.col -->	
+				</div>
+					<!-- /.col -->			
+		
+				
+    		</section>
+    <!-- </form>-->
+   <div class="clearfix"></div>
