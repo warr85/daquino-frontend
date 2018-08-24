@@ -39,7 +39,7 @@ export class UserService{
 		return this.identity;
 	}
 
-	getToken(){
+	getToken() {
 		let token = JSON.parse(localStorage.getItem('token'));
 
 		if (token != "undefined"){
@@ -52,7 +52,7 @@ export class UserService{
 	}
 
 
-	register(user){
+	register(user) {
 		let json = JSON.stringify(user);
 		let params = "json=" + json;
 
@@ -62,4 +62,6 @@ export class UserService{
 
 	}
 
+
+	
 }

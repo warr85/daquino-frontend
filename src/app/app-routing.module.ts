@@ -6,13 +6,13 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { RequisitionsComponent } from './components/requisitions/requisitions.component';
-import { UserComponent } from './components/user/user.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login/:id', component: LoginComponent },
-  { path: 'security/user', component: UserComponent },
+  { path: 'security/user', component: UsersComponent },
   { path: 'contract', component: ContractComponent },
   { path: 'requisitions', component: RequisitionsComponent },
   { path: '**', redirectTo: ''}

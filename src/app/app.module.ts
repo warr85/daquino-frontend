@@ -16,7 +16,9 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { RequisitionsComponent } from './components/requisitions/requisitions.component';
-import { UserComponent } from './components/user/user.component';
+import { UsersComponent } from './components/users/users.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { UserComponent } from './components/user/user.component';
     HomeComponent,
     ContractComponent,
     RequisitionsComponent,
-    UserComponent
+    UsersComponent,
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
