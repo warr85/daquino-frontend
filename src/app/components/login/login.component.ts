@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     }
 
     ifLogged() {
-        const identity = this._userService.getIdentity();
+        let identity = this._userService.getIdentity();
         if(identity != null && identity.sub){
 			this._router.navigate(["/"]);
 		}

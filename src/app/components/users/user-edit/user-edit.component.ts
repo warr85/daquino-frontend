@@ -16,8 +16,7 @@ export class UserEditComponent implements OnInit {
   ];
   public status;
 
-constructor(private _route: ActivatedRoute, private _router: Router,	private _userService: UserService
-) {
+constructor(private _route: ActivatedRoute, private _router: Router,	private _userService: UserService) {
   this.title = 'Registro de usuarios';
 }
 

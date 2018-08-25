@@ -63,5 +63,12 @@ export class UserService{
 	}
 
 
-	
+	getUsers(token, page = null) {
+		let params = "authorization=" + token;
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });
+		if (page == null) page = 1;
+		return this._http.post(this.url + "/security/user/list", params, {headers : headers})
+			.pipe(map(res => res.json()));
+	}
+
 }
