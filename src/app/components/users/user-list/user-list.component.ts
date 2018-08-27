@@ -3,11 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-user-list',
-  template: `
-  <td>{{ userList.username }}</td>
-  <td>{{ userList.id }}</td>
-  <td>{{ userList.roles }}</td>
-  `,
+  templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
@@ -24,8 +20,6 @@ export class UserListComponent implements OnInit {
   }
 
   
-
-
 
   
 }
