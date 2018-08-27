@@ -1,29 +1,6 @@
 <!-- Main content -->
-<section class="content">
-	<div class="col-sm-10 col-xs-12">
-      	<div class="box box-warning ">
-            <div class="box-header with-border">
-                <h3 class="box-title">
-                  List Users					
-                </h3>
-            </div>
-             <!-- /.box-header -->   
-            <div class="box-body">
-              <table class="table table-hover table-condensed table-striped" *ngIf="user && user.length >=1">
-                <tr>
-                  <th>Username</th>
-                  <th>Group</th>
-                  <th>Membership</th>
-                </tr>
-                <tr *ngFor="let u of user">
-                  <td>{{ u.email }}</td>
-                  <td>{{ u.id }}</td>
-                  <td>{{ u.roles }}</td>
-                </tr>
-              </table>
-            </div>   
-             <!-- /.box-body --> 
-          </div>
-          <!-- /.box-warning --> 
-    </div>
- </section>
+
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.roles }}</td>
+               
