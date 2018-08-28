@@ -34,7 +34,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a routerLink="/" id="home" class="page"><i class="fa fa-circle-o"></i> Main</a></li>            
+            <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" ><a routerLink="/" id="home" class="page"><i class="fa fa-circle-o"></i> Main</a></li>            
           </ul>
         </li>
         <li class="treeview active">
@@ -46,8 +46,8 @@
             </span>-->
           </a>
           <ul class="treeview-menu">
-          	<li><a  routerLink="/contract" id="contract" class="page"><i class="fa fa-circle-o"></i> Contract</a></li>
-            <li><a routerLink="/requisitions" id="requisition" class="page"><i class="fa fa-circle-o"></i> Requisition</a></li>
+          	<li routerLinkActive="active"><a  routerLink="/contract" id="contract" class="page"><i class="fa fa-circle-o"></i> Contract</a></li>
+            <li routerLinkActive="active"><a routerLink="/requisitions" id="requisition" class="page"><i class="fa fa-circle-o"></i> Requisition</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Biding</a></li>
             <li><a href="invoice.html" id="invoice" class="page"><i class="fa fa-circle-o"></i> Purchase Order</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Report Manager</a></li>
@@ -103,7 +103,7 @@
             <span>Admin & Security</span>            
           </a>
           <ul class="treeview-menu">
-            <li><a routerLink="/security/user"><i class="fa fa-circle-o"></i> User</a></li>
+            <li routerLinkActive="active"><a routerLink="/security/user"><i class="fa fa-circle-o"></i> User</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Lay up</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Order Monitor</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Building</a></li>
