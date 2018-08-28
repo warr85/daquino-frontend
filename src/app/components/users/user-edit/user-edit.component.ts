@@ -6,20 +6,19 @@ import { UserService } from './../../../services/user.service';
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css'],
-  providers: [ ],
+  styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
   public title: string;
-  public email;
-  /*public user: User[] = [
-    new User("ytoro", 1, 1, "13649533")
-  ];*/
-  @Output() userAdded = new EventEmitter<{ email:string, id: number, roles: string }>();
+  public email;   
   public user: User;
   public status;
 
-constructor(private _route: ActivatedRoute, private _router: Router,	private _userService: UserService) {
+constructor(
+  private _route: ActivatedRoute, 
+  private _router: Router,	
+  private _userService: UserService
+) {
   this.title = 'Registro de usuarios';
   this.user = new User("", 1, 1, "")  ;
 }
@@ -36,8 +35,8 @@ constructor(private _route: ActivatedRoute, private _router: Router,	private _us
       this.email = response.email;
       if ( response.status !== 'success' ) {
         this.status = 'error';
-      }else{
-        this.userAdded.emit({email: response.email, id: response.id, roles: response.roles});;
+      }else{        
+        this._userService.userCreated.emit(this.user);
       }
     },
     error => {

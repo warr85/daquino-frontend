@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, HttpModule, Response, Headers } from '@angular/http';
 //import {Http, HTTP_PROVIDERS} from '@angular/http';
 import {map} from 'rxjs/operators';
 // import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
+import { User } from './../components/users/users.model';
 
 @Injectable()
 export class UserService{
 	public url: string;
 	public identity;
 	public token;
+	public userCreated = new EventEmitter<User>();
 
 	constructor(private _http: Http){
 		this.url = GLOBAL.url;
@@ -71,6 +73,11 @@ export class UserService{
 		if (page == null) page = 1;
 		return this._http.post(this.url + "/security/user/list", params, {headers : headers})
 			.pipe(map(res => res.json()));
+	}
+
+	onUserCreated(){
+		/*this.users.push({username:"userData.email", password:"asdfasdfasdf",  group: 1, membership:1});
+    	console.log(this.users);*/
 	}
 
 }

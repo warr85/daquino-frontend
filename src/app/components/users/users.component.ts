@@ -30,12 +30,12 @@ export class UsersComponent implements OnInit {
     }
     
     this.getAllUsers();   
-  }
 
-
-  onUserAdded(userData: { email:string, id: number, roles: string }){
-    this.users.push({username:"userData.email", password:"asdfasdfasdf",  group: 1, membership:1});
-    console.log(this.users);
+    this._userService.userCreated.subscribe(
+      (user: User) => {
+        this.users.push(user);
+      }
+    );
   }
 
   getAllUsers(){
