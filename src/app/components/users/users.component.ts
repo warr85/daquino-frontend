@@ -7,7 +7,7 @@ import { UserService } from './../../services/user.service';
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
-  providers: [ UserService ]
+  providers: [ ]
 })
 export class UsersComponent implements OnInit {
  

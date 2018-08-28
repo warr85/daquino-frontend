@@ -19,6 +19,7 @@ import { RequisitionsComponent } from './components/requisitions/requisitions.co
 import { UsersComponent } from './components/users/users.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { UserEditComponent } from './components/users/user-edit/user-edit.compon
     FormsModule,
     HttpModule
   ],
-  // providers: [AuthService, AuthGuard],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

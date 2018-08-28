@@ -15,7 +15,7 @@ import { UserService } from './../../services/user.service';
 		    padding-bottom: 141px;
 		}
   `],
-   providers: [ UserService ],
+   providers: [],
 })
 
 export class LoginComponent implements OnInit {

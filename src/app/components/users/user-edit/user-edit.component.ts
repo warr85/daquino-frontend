@@ -7,7 +7,7 @@ import { UserService } from './../../../services/user.service';
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css'],
-  providers: [ UserService ],
+  providers: [ ],
 })
 export class UserEditComponent implements OnInit {
   public title: string;
