@@ -51,7 +51,17 @@ export class LoginComponent implements OnInit {
 	}
 
 	logOut(){
-		this._route.params.forEach((params: Params) => {
+
+		if(+this._route.snapshot.params['id'] === 1){
+			localStorage.removeItem('identity');
+			localStorage.removeItem('token');
+			this.identity = null;
+			this.token = null;
+
+			window.location.href = "/login";
+		}
+
+		/*this._route.params.forEach((params: Params) => {
 			let logout = +params['id'];
 			if(logout == 1){
 				localStorage.removeItem('identity');
@@ -62,7 +72,7 @@ export class LoginComponent implements OnInit {
 
 				window.location.href = "/login";
 			}
-		});
+		});*/
 	}
 
 	onSubmit() {
