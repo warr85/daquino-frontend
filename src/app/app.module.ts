@@ -22,6 +22,7 @@ import { UserEditComponent } from './components/users/user-edit/user-edit.compon
 import { UserService } from './services/user.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
+import { CanDeactivateGuard } from './components/users/user-edit/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { AuthGuard } from './auth/auth.guard';
     FormsModule,
     HttpModule
   ],
-  providers: [UserService, AuthService, AuthGuard],
+  providers: [UserService, AuthService, AuthGuard, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
