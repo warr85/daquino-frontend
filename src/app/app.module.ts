@@ -20,6 +20,8 @@ import { UsersComponent } from './components/users/users.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 import { UserService } from './services/user.service';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,7 @@ import { UserService } from './services/user.service';
     FormsModule,
     HttpModule
   ],
-  providers: [UserService],
+  providers: [UserService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from './../../services/user.service';
+import { AuthService } from './../../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,7 @@ import { UserService } from './../../services/user.service';
 		.content {
 		    padding-bottom: 141px;
 		}
-  `],
-   providers: [],
+  `]   
 })
 
 export class LoginComponent implements OnInit {
@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
-        private _userService: UserService
+		private _userService: UserService,
+		private _authService: AuthService
   ) {
         this.user = {
             'username' : '',
@@ -37,14 +38,14 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         console.log('componente cargado');
-        console.log(this._userService.getIdentity());
-        console.log(this._userService.getToken());
+        console.log(this._authService.getIdentity());
+        console.log(this._authService.getToken());
         this.logOut();
         this.ifLogged();
     }
 
     ifLogged() {
-        let identity = this._userService.getIdentity();
+        let identity = this._authService.getIdentity();
         if(identity != null && identity.sub){
 			this._router.navigate(["/"]);
 		}
@@ -78,8 +79,8 @@ export class LoginComponent implements OnInit {
 	onSubmit() {
     	//console.log(this.user);
     	//alert(this._userService.signup());
-    	this.user.hashed = true;
-    	this._userService.signup(this.user).subscribe(
+		this.user.hashed = true;		
+    	this._authService.loginCheck(this.user).subscribe(
     		response => {    			
     			this.identity = response;
     			if (this.identity.length <= 1){
@@ -91,7 +92,7 @@ export class LoginComponent implements OnInit {
     					console.log(this.identity);
     					//Get Token
     					this.user.hashed = false;
-    					this._userService.signup(this.user).subscribe(
+    					this._authService.loginCheck(this.user).subscribe(
 				    		response => {    			
 				    			this.token = response;
 				    			if (this.token.length <= 1){

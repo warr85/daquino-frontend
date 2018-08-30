@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './services/user.service';
-import * as $ from 'jquery';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +12,7 @@ import * as $ from 'jquery';
         margin-left:0;
     }
   `],
-  providers: [UserService]
+  providers: [AuthService]
 })
 
 export class AppComponent implements OnInit {
@@ -22,9 +21,9 @@ export class AppComponent implements OnInit {
   public token;
   public logged = false;
 
-  constructor(private _userService: UserService) {
-    this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
+  constructor(private _authService: AuthService) {
+    this.identity = this._authService.getIdentity();
+    this.token = this._authService.getToken();
 
     if(this.identity != null && this.identity.sub){
 			this.logged = true;
