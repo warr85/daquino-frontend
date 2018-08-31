@@ -22,6 +22,8 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
   public user: User;
   public status;
   public token;
+  public id: number;
+  public editMode = false;
   public changesSaved = false;
   allowEdit = false;
 
@@ -39,16 +41,18 @@ constructor(
   ngOnInit() {
     console.log(this._route.snapshot.queryParams);
     console.log(this._route.snapshot.fragment);
-    this._route.queryParams
+    this._route.params
       .subscribe(
-        (queryParams: Params) => {
-          this.allowEdit = queryParams['allowEdit'] === '1' ? true : false;
+        (params: Params) => {
+          this.id = params['id'];
+          this.editMode =  params['id'] != null;  
+          console.log(this.editMode);
         }
       );
     this._route.fragment.subscribe();
-    const id = +this._route.snapshot.params['id'];
-    let data = this._userService.getSingleUser(this.token, id);
-    this._userService.getSingleUser(this.token, id).subscribe(
+    
+   if(this.editMode){
+    this._userService.getSingleUser(this.token, this.id).subscribe(
       response => {
         if (response.status === "success"){
           this.user = response.user;
@@ -60,6 +64,7 @@ constructor(
         console.log("error");
       }
     );    
+  }
   }
 
   
