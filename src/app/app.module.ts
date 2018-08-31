@@ -23,6 +23,9 @@ import { UserService } from './services/user.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { CanDeactivateGuard } from './components/users/user-edit/can-deactivate-guard.service';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { UserComponent } from './components/users/user/user.component';
+import { UserResolver } from './components/users/user/user.resolver';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { CanDeactivateGuard } from './components/users/user-edit/can-deactivate-
     RequisitionsComponent,
     UsersComponent,
     UserListComponent,
-    UserEditComponent
+    UserEditComponent,
+    ErrorPageComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,7 @@ import { CanDeactivateGuard } from './components/users/user-edit/can-deactivate-
     FormsModule,
     HttpModule
   ],
-  providers: [UserService, AuthService, AuthGuard, CanDeactivateGuard],
+  providers: [UserService, AuthService, AuthGuard, CanDeactivateGuard, UserResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

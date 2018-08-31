@@ -10,18 +10,23 @@ import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './auth/auth.guard';
 import { CanDeactivateGuard } from './components/users/user-edit/can-deactivate-guard.service';
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { UserComponent } from './components/users/user/user.component';
+import { UserResolver } from './components/users/user/user.resolver';
 
 const routes: Routes = [
   { path: '', canActivate:[AuthGuard], component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login/:id', component: LoginComponent },
-  { path: 'security/user', 
-    canActivateChild:[AuthGuard], component: UsersComponent, children: [
-      { path: '', component: UserEditComponent, canDeactivate: [CanDeactivateGuard] } 
+  { path: 'security/users', canActivateChild:[AuthGuard], component: UsersComponent, children: [
+      { path: ':id', component: UserComponent, resolve: {user: UserResolver} },
+      { path: ':id/edit', component: UserEditComponent, canDeactivate: [CanDeactivateGuard] }, 
+      { path: 'edit', component: UserEditComponent }
     ] },
   { path: 'contract', component: ContractComponent, canDeactivate: [CanDeactivateGuard] },
   { path: 'requisitions', component: RequisitionsComponent },
-  { path: '**', redirectTo: ''}
+  { path: 'error-page', component: ErrorPageComponent },
+  { path: '**', redirectTo: '/error-page'}
 ];
 
 
