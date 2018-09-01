@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from './users.model';
 import { UserService } from './../../services/user.service';
 import { AuthService } from '../../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,8 +11,9 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
  
+  private subscription: Subscription;
   
   public token;
   public users: User[];
@@ -42,7 +44,7 @@ export class UsersComponent implements OnInit {
       let page = +params['page'];
       if (!page) page = 1;
 
-      this._userService.getUsers(this.token, page).subscribe(
+      this.subscription = this._userService.getUsers(this.token, page).subscribe(
         response => {
           if (response.status === "success"){
             this.users = response.users;
@@ -54,6 +56,10 @@ export class UsersComponent implements OnInit {
         }
       );
     });
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 }
