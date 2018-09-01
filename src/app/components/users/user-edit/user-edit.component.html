@@ -26,8 +26,9 @@
 							[(ngModel)] = "user.username" 
 							placeholder="username..." required
 						>
-						<span class="text-small" 
-							*ngIf="!username.valid && username.touched">
+						<span class="help-block" 
+							*ngIf="!username.valid && username.touched"
+						>
 							El nombre de usuario no es válido
 						</span>
 					</div>
@@ -41,7 +42,9 @@
 							[(ngModel)] = "user.password" required
 						>
 						
-						<span class="text-small" *ngIf="!password.valid && password.touched">
+						<span class="help-block" 
+							*ngIf="!password.valid && password.touched"
+						>
 							El password no es válido
 						</span>
 					</div>
@@ -50,25 +53,27 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group ">
-						<label>Group</label>
+						<label>* Group</label>
 						<select class="form-control input-sm" id="group" name="group" 
 							#group="ngModel" [(ngModel)] = "user.group"
+							required
 						>
-							<option value="">Select Group</option>
-							<option value="1">Admin</option>					
+							<option value="null">Select Group</option>
+							<option value=1>Admin</option>					
 						</select>
 					</div>
 				</div>
 
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group ">
-						<label>Membership</label>
+						<label>* Membership</label>
 						<select class="form-control input-sm" id="membership" 
 							name="membership" #membership="ngModel" 
 							[(ngModel)] = "user.membership"
+							required
 						>
-							<option value="">Select membership</option>
-							<option value="1">membership</option>	
+							<option value="null">Select membership</option>
+							<option value=1>membership</option>	
 						</select>
 					</div>
 				</div>

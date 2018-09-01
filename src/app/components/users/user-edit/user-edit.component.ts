@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from './../users.model';
 import { UserService } from './../../../services/user.service';
 import { Observable } from 'rxjs';
 import { CanComponentDeactivate, CanDeactivateGuard } from './can-deactivate-guard.service';
 import { AuthService } from '../../../auth/auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-edit',
@@ -15,6 +16,9 @@ import { AuthService } from '../../../auth/auth.service';
 
 
 export class UserEditComponent implements OnInit, CanComponentDeactivate {
+
+@ViewChild('newUserForm') form: NgForm;
+
   public title: string;
   public email;   
   public username;
@@ -34,13 +38,14 @@ constructor(
   private _authService: AuthService
 ) {
   this.title = 'Registro de usuarios';
-  this.user = new User("", 1, 1, "")  ;
+  this.user = new User("", null, null, "")  ;
   this.token = this._authService.getToken();
 }
 
   ngOnInit() {
     console.log(this._route.snapshot.queryParams);
     console.log(this._route.snapshot.fragment);
+    console.log(this.user.membership);
     this._route.params
       .subscribe(
         (params: Params) => {
@@ -80,12 +85,14 @@ constructor(
         }else{        
           this._userService.userCreated.next(this.user);
           this.changesSaved = true;
+          this.form.reset();
         }
       },
       error => {
         console.log( <any>error);
       }
     );
+    
 
   }
 
