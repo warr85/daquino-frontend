@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from './../users.model';
 import { UserService } from './../../../services/user.service';
@@ -78,7 +78,7 @@ constructor(
         if ( response.status !== 'success' ) {
           this.status = 'error';
         }else{        
-          this._userService.userCreated.emit(this.user);
+          this._userService.userCreated.next(this.user);
           this.changesSaved = true;
         }
       },

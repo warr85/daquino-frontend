@@ -1,17 +1,16 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, HttpModule, Response, Headers } from '@angular/http';
-//import {Http, HTTP_PROVIDERS} from '@angular/http';
 import {map} from 'rxjs/operators';
-// import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
 import { User } from './../components/users/users.model';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class UserService{
 	public url: string;
 	public identity;
 	public token;
-	public userCreated = new EventEmitter<User>();
+	public userCreated = new Subject();
 
 	constructor(private _http: Http){
 		this.url = GLOBAL.url;
