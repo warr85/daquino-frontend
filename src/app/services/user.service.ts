@@ -49,6 +49,13 @@ export class UserService{
 			.pipe(map(res => res.json()));
 	}
 
+	checkUsernameTaken(token, username = null) {
+		let params = "authorization=" + token;
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });		
+		return this._http.post(this.url + "/security/user/checkusername/" + username, params, {headers : headers})
+			.pipe(map(res => res.json()));
+	}
+
 	onUserCreated(){
 		/*this.users.push({username:"userData.email", password:"asdfasdfasdf",  group: 1, membership:1});
     	console.log(this.users);*/

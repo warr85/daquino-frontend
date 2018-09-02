@@ -9,18 +9,39 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
     <div class="alert alert-success" *ngIf="identity && identity.sub">
-      Has iniciado sesión satisfactoriamente. Bienvenido {{ identity.username }}
+      Bienvenido {{ identity.email }}
 
     </div>
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">    
       <div class="form-group has-feedback">
-        <input placeholder="UserName" type="text" name="username" [(ngModel)]="user.username" required #username="ngModel" class="form-control" />
-        <span *ngIf="!username.valid && username.touched">Username Not Valid!!</span>
+        <input 
+          placeholder="UserName" 
+          type="text" 
+          name="username"                 
+          class="form-control" 
+          formControlName="username"
+        />        
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <span class="helper-block" 
+          *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">
+          Username Not Valid!!
+        </span>
       </div>
       <div class="form-group has-feedback">
-        <input placeholder="password" name="password" type="password" [(ngModel)]="user.password" required #password="ngModel"  class="form-control" />
+        <input 
+          placeholder="password" 
+          name="password" 
+          type="password"           
+          required 
+          class="form-control" 
+          formControlName="password"
+        />
         <span class="glyphicon glyphicon-lock form-control-feedback" ></span>
+
+        <span class="helper-block" 
+          *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
+          Password should Not be Empty!!
+        </span>
                       
       </div>
       <div class="row">
@@ -33,7 +54,9 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-           <button class="btn btn-primary btn-block btn-flat" type="submit" [disabled] = "!loginForm.form.valid">Login</button>
+           <button class="btn btn-primary btn-block btn-flat" 
+           type="submit" 
+           [disabled] = "!loginForm.valid">Login</button>
         </div>
         <!-- /.col -->
       </div>

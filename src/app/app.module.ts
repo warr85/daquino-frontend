@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-// import { AuthGuard } from './auth/auth.guard';
-// import { AuthService } from './auth/auth.service';
+
 import { LoginComponent } from './components/login/login.component';
 import { AppheaderComponent } from './components/appheader/appheader.component';
 import { AppfooterComponent } from './components/appfooter/appfooter.component';
@@ -48,7 +47,7 @@ import { UserResolver } from './components/users/user/user.resolver';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule
   ],
   providers: [UserService, AuthService, AuthGuard, CanDeactivateGuard, UserResolver],
