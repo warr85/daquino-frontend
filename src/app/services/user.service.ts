@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, HttpModule, Response, Headers } from '@angular/http';
-import {map} from 'rxjs/operators';
+import {map, catchError} from 'rxjs/operators';
 import { GLOBAL } from './global';
 import { User } from './../components/users/users.model';
-import { Subject } from 'rxjs';
+import { Subject, of } from 'rxjs';
 
 @Injectable()
 export class UserService{
@@ -27,8 +27,13 @@ export class UserService{
 		console.log(params);
 
 		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });
-		return this._http.post(this.url + "/security/user/new", params, {headers : headers})
-			.pipe(map(res => res.json()));
+		return this._http.post(
+			this.url + "/security/user/new", 
+			params, 
+			{headers : headers}
+		).pipe(
+			map(res => res.json())			
+		);
 
 	}
 
@@ -37,8 +42,14 @@ export class UserService{
 		let params = "authorization=" + token;
 		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });
 		if (page == null) page = 1;
-		return this._http.post(this.url + "/security/user/list", params, {headers : headers})
-			.pipe(map(res => res.json()));
+		return this._http.post(
+			this.url + "/security/user/list", 
+			params, 
+			{headers : headers}
+		).pipe(
+			map(res => res.json()),
+			catchError(err => of(`I caught: ${err}`))
+		);
 	}
 
 	getSingleUser(token, id = null) {

@@ -52,7 +52,7 @@ export class UsersComponent implements OnInit, OnDestroy {
           console.log(this.users);
         },
         error => {
-          console.log("error");
+          console.log(error);
         }
       );
     });
