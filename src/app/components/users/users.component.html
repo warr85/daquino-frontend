@@ -19,6 +19,9 @@
               </div>
                <!-- /.box-header -->   
               <div class="box-body">
+                <div class="loading" *ngIf="loading" >
+                  <img src="../../../assets/img/spinner50.gif" />
+                </div>                
                 <table class="table table-hover table-condensed table-striped" 
                   *ngIf="users && users.length >=1"
                 >

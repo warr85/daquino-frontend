@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class UsersComponent implements OnInit, OnDestroy {
  
   private subscription: Subscription;
-  
+  loading: boolean;
   public token;
   public users: User[];
   constructor(
@@ -28,8 +28,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     
-   
-    
+    this.loading = true;  
     this.getAllUsers();   
 
     this._userService.userCreated.subscribe(
@@ -48,6 +47,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         response => {
           if (response.status === "success"){
             this.users = response.users;
+            this.loading = false;
           }
           console.log(this.users);
         },
