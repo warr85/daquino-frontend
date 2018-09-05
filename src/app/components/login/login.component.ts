@@ -70,8 +70,10 @@ export class LoginComponent implements OnInit {
 			localStorage.removeItem('token');
 			this.identity = null;
 			this.token = null;
-
+			//redirect development
 			window.location.href = "/login";
+			//redirect production
+			//window.location.href = "/daquino-prod/";
 		}
 
 		/*this._route.params.forEach((params: Params) => {
@@ -112,8 +114,11 @@ export class LoginComponent implements OnInit {
 				    				console.log("error en el servidor obteniendo token");
 				    			}{
 				    				if(!this.token.status){    					
-				    					localStorage.setItem('token' , JSON.stringify(this.token));
-				    					window.location.href = "/";
+										localStorage.setItem('token' , JSON.stringify(this.token));
+										//redirect development
+										window.location.href = "/";
+										//redirect production
+				    					window.location.href = "/daquino-prod/";
 				    					console.log(this.token);
 				    				}
 				    			}

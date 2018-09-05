@@ -27,7 +27,9 @@ export class AuthService {
   isAuthenticated(){
     this.identity = this.getIdentity();
     console.log(this.identity);
-    if ((this.identity !== "undefined") || (this.identity !== null) ){ this.loggedIn = true; } 
+    if ((this.identity !== "undefined") || (this.identity !== null) ){ 
+      this.loggedIn = true; 
+    } 
     if (this.identity === null) this.loggedIn = false;
     const promise = new Promise(
       (resolve, reject) => {        

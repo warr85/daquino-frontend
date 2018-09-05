@@ -7,22 +7,7 @@
             </h3>
         </div>
          <!-- /.box-header -->   
-        <div class="box-body">
-          <table class="table table-hover table-condensed table-striped" 
-            *ngIf="userList && userList.length >=1"
-          >
-            <tr>
-              <th>Username</th>
-              <th>Group</th>
-              <th>Membership</th>
-            </tr>
-            <tr *ngFor="let u of userList">
-              <td> {{u.email}} </td>
-              <td> {{u.id}} </td>
-              <td> {{u.roles}} </td>
-            </tr>
-          </table>
-        </div>   
+       
          <!-- /.box-body --> 
       </div>
       <!-- /.box-warning --> 
