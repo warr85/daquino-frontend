@@ -118,7 +118,7 @@ export class LoginComponent implements OnInit {
 										//redirect development
 										window.location.href = "/";
 										//redirect production
-				    					window.location.href = "/daquino-prod/";
+				    					//window.location.href = "/daquino-prod/";
 				    					console.log(this.token);
 				    				}
 				    			}
