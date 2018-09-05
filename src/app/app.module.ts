@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+import {A2Edatetimepicker} from 'ng2-eonasdan-datetimepicker';
 
 import { LoginComponent } from './components/login/login.component';
 import { AppheaderComponent } from './components/appheader/appheader.component';
@@ -24,6 +25,7 @@ import { CanDeactivateGuard } from './components/users/user-edit/can-deactivate-
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { UserComponent } from './components/users/user/user.component';
 import { UserResolver } from './components/users/user/user.resolver';
+import { ContractEditComponent } from './components/contracts/contract-edit/contract-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +41,11 @@ import { UserResolver } from './components/users/user/user.resolver';
     UsersComponent,
     UserEditComponent,
     ErrorPageComponent,
-    UserComponent
+    UserComponent,
+    ContractEditComponent
   ],
   imports: [
+    A2Edatetimepicker,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

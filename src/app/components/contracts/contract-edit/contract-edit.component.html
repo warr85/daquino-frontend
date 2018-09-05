@@ -1,0 +1,214 @@
+<div class="row">
+  <div class="col-sm-6 col-xs-6">
+    <div class="box box-warning ">
+      <div class="box-header with-border">
+        <h3 class="box-title">Registering Contract  <input type="text" 
+          class="input-sm" 
+          id="id" name="id" value="42563-221" 
+          readonly
+        ></h3>
+      </div>
+      <!-- /.box-header -->				    
+      <div class="box-body">
+         <div class="row">				                
+                  
+          <div class="col-xs-12 col-sm-6 col-md-6">					
+              <div class="form-group">
+                  <label>* Signature Date:</label>
+                  <div class="input-group" a2e-datetimepicker [options]="options">
+                    <input class="form-control pull-right input-sm" 
+                    id="star_exp_daterange" placeholder="select date range" 
+                    name="star_exp_daterange" readonly/>
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>
+                  </div>				
+          </div>
+    
+          <div class="col-xs-12 col-sm-6 col-md-6">		
+            <div class="form-group">
+              <label>Start/Exp. Date:</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <input type="text" class="form-control pull-right input-sm" 
+                  id="star_exp_daterange" placeholder="select date range" 
+                  name="star_exp_daterange" readonly
+                >
+              </div>
+              <!-- /.input group -->
+            </div>
+          </div>
+    
+    
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <label for="contracting_party">* Contracting Party:</label>
+              <input type="text" class="form-control input-sm" id="contracting_party" name="contracting_party" value="Daquino's Import" readonly>
+            </div>
+          </div>
+           
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group ">
+              <label>Contracted Party</label>
+              <select class="form-control input-sm" id="contracted_party" name="contracted_party">
+                <option value="">Select</option>
+                <option value="mgt">Mr. Gourmet</option>
+                <option value="aiw">All in Wines</option>
+                <option value="ftb">Farm the brothers</option>
+                <option value="wow">World Wine</option>
+                <option value="hps">Happy Seed</option>
+              </select>
+            </div>
+         </div>
+         
+          <div class="col-xs-12 col-sm-6 col-md-7">
+            <div class="form-group">
+              <label class="control-label">Contract file</label>                     
+              <input type="file" class="form-control input-sm" name="contract_file" id="contract_file" />
+              <span class="help-block">Choose a pdf file.</span>		                  			
+            </div>
+           </div>  
+         
+        </div>
+       <!-- /.row -->
+      </div>				
+      <!-- /.box-body -->				      
+    </div>
+    <!-- /.box-warning -->
+  </div>
+  <!-- /.col -->
+
+
+
+   <div class="col-sm-6 col-xs-6">
+    <div class="box box-warning ">
+      <div class="box-header with-border">
+        <h3 class="box-title">Agreement</h3>
+      </div>
+      <!-- /.box-header -->		        
+      <div class="box-body">
+         <div class="row" >		     		 
+          <div id="agreement-wrapper">		          		
+            <div class="col-xs-12 col-sm-5 col-md-5">
+              <div class="form-group ">
+                <label>UPC</label>
+                <select class="form-control input-sm upc" name="product[]" id="upc">
+                  <option value="">Select UPC</option>
+                  <option value="82308-02307">82308-02307</option>
+                  <option value="82308-92327">82308-92327</option>
+                  <option value="82308-02088">82308-02088</option>
+                  <option value="82308-02053">82308-02053</option>
+                  <option value="82308-02054">82308-02054</option>
+                  <option value="82308-02002">82308-02002</option>
+                  <option value="82308-00503">82308-00503</option>
+                  <option value="82308-02019">82308-02019</option>
+                  <option value="82308-02320">82308-02320</option>
+                  <option value="82308-02074">82308-02074</option>
+                  <option value="82308-02007">82308-02007</option>
+                  <option value="82308-02014">82308-02014</option>
+                  <option value="82308-02060">82308-02060</option>
+                  <option value="82308-02051">82308-02051</option>
+                  <option value="82308-02052">82308-02052</option>
+                  <option value="82308-70002">82308-70002</option>
+                  <option value="82308-70009">82308-70009</option>
+                  <option value="82308-00500">82308-00500</option>
+                  <option value="82308-00512">82308-00512</option>
+                  <option value="55273">55273</option>
+                  <option value="91258">91258</option>
+                </select>
+              </div>
+           </div>
+           
+           <div class="col-xs-12 col-sm-7 col-md-7">
+            <div class="form-group ">
+              <label>Product Desc.</label>
+              <input type="text" name="product[]" id="product" class="form-control input-sm" readonly>
+            </div>
+           </div>
+
+          <div class="col-xs-12 col-sm-5 col-md-5">
+            <div class="form-group">
+              <label for="quantity">Qty.:</label>
+              <input type="text" placeholder="50000" data-bv-numeric="true" min="1" class="form-control input-sm" name="quantity[]" id="quantity"  >
+            </div>
+          </div>
+          
+          <div class="col-xs-12 col-sm-5 col-md-5">
+            <div class="form-group">
+              <label for="quantity">Unit Price:</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                <input type="text" placeholder="price" class="form-control input-sm" name="price[]" id="price" >	                
+              </div>							 
+            </div>
+          </div>
+
+           <div class="col-xs-12 col-sm-2 col-md-2">
+            <div class="form-group ">
+              <div class="form-group">
+                <label for="quantity">Add</label><br>
+               <button type="button" class="btn btn-default btn-sm btn-block addButton" data-template="agreement"><span class="fa fa-plus"></span></button>
+              </div>
+            </div>
+           </div>							
+           </div>
+          <!-- /.wrapper -->
+          <div class="col-xs-12">
+            <table id="example1" class="table table-bordered table-striped display responsive nowrap" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>UPC</th>
+                  <th>Product</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Sub-total</th>				          
+                  <th>Action</th>				         
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="4" style="text-align:right" >Total:</th>
+                  <th colspan="1"></th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>  
+        </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <button type="submit" class="btn btn-app  ">
+          <i class="fa fa-hdd-o"></i> Save
+        </button>		         
+       					     					                       
+      </div>           
+    </div>
+  </div>
+  
+  <script>
+    //Date picker
+    $('#signature_datepicker').datepicker({
+        autoclose: true,
+        startDate: '0d',
+        minDate: new Date(),
+        todayHighlight: true
+      }).on('changeDate', function (selected) {    
+          var minDate = new Date(selected.date.valueOf());
+          $('#star_exp_daterange').daterangepicker({
+              opens: 'left',
+              minDate: minDate
+            }, function(start, end, label) {
+                  console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                  $('#purchase_contract').bootstrapValidator('revalidateField', 'star_exp_daterange');
+            });
+            
+             
+         $('#purchase_contract').bootstrapValidator('revalidateField', 'signature_datepicker');
+      });
+  </script>

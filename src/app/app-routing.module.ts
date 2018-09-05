@@ -13,6 +13,7 @@ import { UserEditComponent } from './components/users/user-edit/user-edit.compon
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { UserComponent } from './components/users/user/user.component';
 import { UserResolver } from './components/users/user/user.resolver';
+import { ContractEditComponent } from './components/contracts/contract-edit/contract-edit.component';
 
 const routes: Routes = [
   { path: '', canActivate:[AuthGuard], component: HomeComponent },
@@ -22,8 +23,10 @@ const routes: Routes = [
       { path: 'new', component: UserEditComponent },
       { path: ':id', component: UserComponent, resolve: {user: UserResolver} },
       { path: ':id/edit', component: UserEditComponent, canDeactivate: [CanDeactivateGuard] }
-    ] },
-  { path: 'contracts', component: ContractsComponent, canDeactivate: [CanDeactivateGuard] },
+  ]},
+  { path: 'contracts', component: ContractsComponent, canActivate: [AuthGuard], canActivateChild:[AuthGuard], children: [
+    {path: 'new', component: ContractEditComponent }
+  ]},
   { path: 'requisitions', component: RequisitionsComponent },
   { path: 'error-page', component: ErrorPageComponent },
   { path: '**', redirectTo: '/error-page'}
