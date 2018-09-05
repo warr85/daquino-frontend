@@ -16,7 +16,6 @@ import { HomeComponent } from './components/home/home.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { RequisitionsComponent } from './components/requisitions/requisitions.component';
 import { UsersComponent } from './components/users/users.component';
-import { UserListComponent } from './components/users/user-list/user-list.component';
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 import { UserService } from './services/user.service';
 import { AuthService } from './auth/auth.service';
@@ -38,7 +37,6 @@ import { UserResolver } from './components/users/user/user.resolver';
     ContractComponent,
     RequisitionsComponent,
     UsersComponent,
-    UserListComponent,
     UserEditComponent,
     ErrorPageComponent,
     UserComponent
