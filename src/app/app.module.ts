@@ -13,7 +13,7 @@ import { AppmenuComponent } from './components/appmenu/appmenu.component';
 import { AppsettingsComponent } from './components/appsettings/appsettings.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './components/home/home.component';
-import { ContractComponent } from './components/contract/contract.component';
+import { ContractsComponent } from './components/contracts/contracts.component';
 import { RequisitionsComponent } from './components/requisitions/requisitions.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
@@ -34,7 +34,7 @@ import { UserResolver } from './components/users/user/user.resolver';
     AppmenuComponent,
     AppsettingsComponent,
     HomeComponent,
-    ContractComponent,
+    ContractsComponent,
     RequisitionsComponent,
     UsersComponent,
     UserEditComponent,

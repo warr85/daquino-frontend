@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 // import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { ContractComponent } from './components/contract/contract.component';
+import { ContractsComponent } from './components/contracts/contracts.component';
 import { RequisitionsComponent } from './components/requisitions/requisitions.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: ':id', component: UserComponent, resolve: {user: UserResolver} },
       { path: ':id/edit', component: UserEditComponent, canDeactivate: [CanDeactivateGuard] }
     ] },
-  { path: 'contract', component: ContractComponent, canDeactivate: [CanDeactivateGuard] },
+  { path: 'contracts', component: ContractsComponent, canDeactivate: [CanDeactivateGuard] },
   { path: 'requisitions', component: RequisitionsComponent },
   { path: 'error-page', component: ErrorPageComponent },
   { path: '**', redirectTo: '/error-page'}

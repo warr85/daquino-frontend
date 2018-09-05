@@ -3,11 +3,11 @@ import { CanComponentDeactivate } from '../users/user-edit/can-deactivate-guard.
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-contract',
-  templateUrl: './contract.component.html',
-  styleUrls: ['./contract.component.css']
+  selector: 'app-contracts',
+  templateUrl: './contracts.component.html',
+  styleUrls: ['./contracts.component.css']
 })
-export class ContractComponent implements OnInit, CanComponentDeactivate {
+export class ContractsComponent implements OnInit, CanComponentDeactivate {
 
   constructor() { }
 
