@@ -1,13 +1,18 @@
 <div class="row">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()" >
   <div class="col-sm-5 col-xs-5">
     <div class="box box-warning ">
       <div class="box-header with-border">
-        <h3 class="box-title">Registering Contract  
+        <div class="col-sm-7">
+        <h3 class="box-title">New Contract  </h3>
+          </div>
+          <div class="col-sm-5">
           <input type="text" 
-            class="control input-sm" 
-            id="id" name="id" value="42563-221" 
+            class="form-control input-sm" 
+            id="id" name="id" formControlName="id"
             readonly
-        ></h3>
+        >
+      </div>
       </div>
       <!-- /.box-header -->				    
       <div class="box-body">
@@ -16,10 +21,14 @@
           <div class="col-xs-12 col-sm-12 col-md-6">					
             <div class="form-group">
               <label>* Signature Date:</label>
-              <div class="input-group" a2e-datetimepicker [options]="options">
-                <input class="form-control pull-right input-sm" 
-                id="signature_daterange" placeholder="select date range" 
-                name="signature_daterange" readonly/>
+              <div class="input-group" >
+                <input class="form-control pull-right input-sm"
+                  a2e-datetimepicker 
+                  [options]="options" 
+                  formControlName="sigDate"
+                  id="signature_daterange" placeholder="select date range" 
+                  name="signature_daterange"  readonly
+                />
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -30,10 +39,14 @@
           <div class="col-xs-12 col-sm-12 col-md-6">					
             <div class="form-group">
               <label>* Start Date:</label>
-              <div class="input-group" a2e-datetimepicker [options]="options">
-                <input class="form-control pull-right input-sm" 
-                id="start_daterange" placeholder="select date range" 
-                name="start_daterange" readonly/>
+              <div class="input-group" >
+                <input 
+                  a2e-datetimepicker [options]="options"
+                  class="form-control pull-right input-sm" 
+                  id="start_daterange" placeholder="select date range" 
+                  name="start_daterange"  readonly
+                  formControlName="startDate"
+                />
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -44,10 +57,14 @@
           <div class="col-xs-12 col-sm-12 col-md-6">					
             <div class="form-group">
               <label>* Exp. Date:</label>
-              <div class="input-group" a2e-datetimepicker [options]="options">
-                <input class="form-control pull-right input-sm" 
-                id="end_daterange" placeholder="select date range" 
-                name="end_daterange" readonly/>
+              <div class="input-group" >
+                <input
+                  a2e-datetimepicker [options]="options" 
+                  class="form-control pull-right input-sm" 
+                  id="end_daterange" placeholder="select date range" 
+                  name="end_daterange"  readonly
+                  formControlName="expDate"
+                />
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -58,21 +75,25 @@
     
           <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
-              <label for="contracting_party">* Contracting Party:</label>
-              <input type="text" class="form-control input-sm" id="contracting_party" name="contracting_party" value="Daquino's Import" readonly>
+              <label for="contracting_party">* Contracting:</label>
+              <input type="text" class="form-control input-sm" 
+                id="contracting_party" name="contracting_party" 
+                 readonly>
             </div>
           </div>
            
           <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group ">
-              <label>Contracted Party</label>
-              <select class="form-control input-sm" id="contracted_party" name="contracted_party">
-                <option value="">Select</option>
-                <option value="mgt">Mr. Gourmet</option>
-                <option value="aiw">All in Wines</option>
-                <option value="ftb">Farm the brothers</option>
-                <option value="wow">World Wine</option>
-                <option value="hps">Happy Seed</option>
+              <label>Contracted</label>
+              <select 
+                class="form-control input-sm" 
+                id="contracted_party" 
+                name="contracted_party" 
+                formControlName="contracted"
+              >                              
+                <option *ngFor="let item of items" [ngValue]="item.value">
+                  {{item.name}}
+                </option>
               </select>
             </div>
          </div>
@@ -205,3 +226,6 @@
       </div>           
     </div>
   </div>
+</form>
+  </div>
+  

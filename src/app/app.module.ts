@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,6 +47,7 @@ import { ContractEditComponent } from './components/contracts/contract-edit/cont
   imports: [
     A2Edatetimepicker,
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
