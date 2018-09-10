@@ -33,6 +33,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     this._userService.userCreated.subscribe(
       (user: User) => {
+        console.log(user);
         this.users.push(user);
       }
     );

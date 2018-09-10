@@ -20,10 +20,10 @@ export class UserService{
 	
 
 
-	register(user) {
+	register(token, user) {
 		
 		let json = JSON.stringify(user);		
-		let params = "json=" + json;
+		let params = "json=" + json + "&authorization=" + token;
 		console.log(params);
 
 		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });

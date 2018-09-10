@@ -18,9 +18,22 @@
 					<div class="form-group">						
 						<label for="id">* username:</label>
 						<input 
-							type="text" class="form-control input-sm" id="username" 
-							name="username" [(ngModel)]="user.description"						
+							type="text" class="form-control input-sm" id="description" 
+							name="description" [(ngModel)]="user.description"						
 							placeholder="username..." 
+							[readonly] = "editMode"
+						>
+						
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">						
+						<label for="id">* password:</label>
+						<input 
+							type="password" class="form-control input-sm" id="password" 
+							name="password" [(ngModel)]="user.password"						
+							placeholder="password..." 							
 						>
 						
 					</div>

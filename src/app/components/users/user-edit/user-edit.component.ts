@@ -23,7 +23,7 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
   
 
   public topics = [
-    { value: 'admin', display: 'Admin' },
+    { value: 'Admin', display: 'Admin' },
     { value: 'purchase', display: 'Purchase' },
     { value: 'other', display: 'Other' },
   ];
@@ -50,7 +50,7 @@ constructor(
 ) {
 
   this.title = 'Registro de usuarios';
-  this.user = new User("", null, "") ;
+  this.user = new User("") ;
   this.token = this._authService.getToken();
 }
 
@@ -105,7 +105,7 @@ constructor(
     console.log(f);
     console.log(f.value);
 
-    /*this._userService.register(f).subscribe(
+    this._userService.register(this.token, f.value).subscribe(
       response => {
         console.log(response);
         this.status = response.status;
@@ -113,14 +113,15 @@ constructor(
         if ( response.status !== 'success' ) {
           this.status = 'error';
         }else{        
-          this._userService.userCreated.next(f);
-          this.changesSaved = true;          
+          this._userService.userCreated.next(response.user);
+          this.changesSaved = true;
+          this._router.navigate(["../"], {relativeTo: this._route});
         }
       },
       error => {
         console.log( <any>error);
       }
-    );*/
+    );
     
 
   }
