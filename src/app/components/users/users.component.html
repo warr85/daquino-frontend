@@ -26,18 +26,18 @@
                   *ngIf="users && users.length >=1"
                 >
                   <tr>
+                    <th>id</th>
                     <th>Username</th>
-                    <th>Group</th>
-                    <th>Membership</th>
+                    <th>Status</th>
                   </tr>
                   <tr *ngFor="let user of users">
                     <td> <a
                       [routerLink]="['/security/users', user.id]"                                           
                       >
-                      {{ user.username }}
+                      {{ user.id }}
                     </a> </td>
-                    <td> {{user.id}} </td>
-                    <td> {{user.roles}} </td>
+                    <td> {{user.description}} </td>
+                    <td> {{user.iduds006.description}} </td>
                   </tr>
                 </table>
               </div>   

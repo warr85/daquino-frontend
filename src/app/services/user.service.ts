@@ -56,8 +56,14 @@ export class UserService{
 		let params = "authorization=" + token;
 		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });
 		if (id == null) id = 1;
-		return this._http.post(this.url + "/security/user/show/" + id, params, {headers : headers})
-			.pipe(map(res => res.json()));
+		console.log(id);
+		return this._http.post(
+			this.url + "/security/user/show/" + id, 
+			params, 
+			{headers : headers}
+		).pipe(			
+			map(res => res.json())
+		);
 	}
 
 	checkUsernameTaken(token, username = null) {
@@ -65,6 +71,18 @@ export class UserService{
 		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });		
 		return this._http.post(this.url + "/security/user/checkusername/" + username, params, {headers : headers})
 			.pipe(map(res => res.json()));
+	}
+
+	getPermission(token, username, role){		
+		let params = "authorization=" + token;
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });		
+		return this._http.post(
+			this.url + "/security/user/permission/" + username + "/" + role, 
+			params, 
+			{headers : headers}
+		).pipe(			
+			map(res => res.json())
+		);
 	}
 
 	onUserCreated(){

@@ -1,13 +1,12 @@
 export class User{
-	public username: string;
-	public membership: number;
-	public group: number;
-	public password: string;
+	public id: number;
+	public description: string;
+	public membership?: string;
+	public topics?: Array<string>;
 
-	constructor(username: string, member: number, group: number, password: string){
-		this.username = username;
-		this.membership = member;
-		this.group = group;
-		this.password = password;
+	constructor(description: string, id:number, mem: string, topics?: Array<string>){
+		this.id = id;
+		this.description = description;
+		this.membership = mem;
 	}
 }

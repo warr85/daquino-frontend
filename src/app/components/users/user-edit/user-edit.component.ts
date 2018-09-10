@@ -5,7 +5,7 @@ import { UserService } from './../../../services/user.service';
 import { Observable } from 'rxjs';
 import { CanComponentDeactivate, CanDeactivateGuard } from './can-deactivate-guard.service';
 import { AuthService } from '../../../auth/auth.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-edit',
@@ -19,7 +19,16 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
 
 
   public title: string;
-  public email;   
+  public email; 
+  
+
+  public topics = [
+    { value: 'admin', display: 'Admin' },
+    { value: 'purchase', display: 'Purchase' },
+    { value: 'other', display: 'Other' },
+  ];
+
+  controls;
   public username;
   public password;
   public user: User;
@@ -29,8 +38,9 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
   public editMode = false;
   public changesSaved = false;
   allowEdit = false;
+  public checked = false;
 
-  edit : FormGroup;
+  
 
 constructor(
   private _route: ActivatedRoute, 
@@ -38,65 +48,64 @@ constructor(
   private _userService: UserService,  
   private _authService: AuthService
 ) {
+
   this.title = 'Registro de usuarios';
-  this.user = new User("", null, null, "")  ;
+  this.user = new User("", null, "") ;
   this.token = this._authService.getToken();
 }
 
   ngOnInit() {
-    console.log(this._route.snapshot.queryParams);
-    console.log(this._route.snapshot.fragment);
-    console.log(this.user.membership);    
+       
 
     this._route.params
       .subscribe(
         (params: Params) => {
           this.id = params['id'];
           this.editMode =  params['id'] != null;  
-          console.log(this.editMode);
+          
         }
       );
 
+      this.user = {
+        description: '',  
+        id: 0,      
+        topics: []
+      }
 
-
-      this.edit = new FormGroup({
-        'username' : new FormControl(null, Validators.required),
-        'password' : new FormControl(null, Validators.required),
-        'group': new FormControl(null, Validators.required),
-        'membership' : new FormControl(null, Validators.required)
-      });
-
+     
     this._route.fragment.subscribe();
     
    if(this.editMode){     
     this._userService.getSingleUser(this.token, this.id).subscribe(
       response => {
         if (response.status === "success"){
-          this.user = response.user;
-          console.log(response);
-          this.edit.setValue({
-            'username' : response.user.username,
-            'password' : response.user.password,
-            'group': response.user.id,
-            'membership': response.user.id,
-          });
+          console.log(response.user.membership);
+          this.user.description = response.user.description;
+          const prueba = response.user.membership;
+          this.user.topics = prueba;          
+          
         }
-        console.log(response);
-        console.log(this.user);
+        
       },
       error => {
         console.log("error");
       }
     );    
   }else{
-    this.edit.get('username').setAsyncValidators(this.usernameTaken.bind(this));
+    
   }
   }
 
   
-  onSubmit() {
-    console.log(this.user);
-    this._userService.register(this.edit.value).subscribe(
+ 
+
+ 
+  
+  onSubmit(f: NgForm) {
+    console.log(f);
+    console.log(f.value);
+
+    /*this._userService.register(f).subscribe(
       response => {
         console.log(response);
         this.status = response.status;
@@ -104,21 +113,20 @@ constructor(
         if ( response.status !== 'success' ) {
           this.status = 'error';
         }else{        
-          this._userService.userCreated.next(this.edit.value);
-          this.changesSaved = true;
-          this.edit.reset();
+          this._userService.userCreated.next(f);
+          this.changesSaved = true;          
         }
       },
       error => {
         console.log( <any>error);
       }
-    );
+    );*/
     
 
   }
 
 
-  usernameTaken (control: FormControl): Promise<any> | Observable<any> {
+  /*usernameTaken (control: FormControl): Promise<any> | Observable<any> {
     const promise = new Promise<any>((resolve, reject) =>{
        this._userService.checkUsernameTaken(this.token, this.edit.get('username').value).subscribe(
         response => {
@@ -133,7 +141,7 @@ constructor(
     });
     return promise;
 
-  }
+  }*/
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     

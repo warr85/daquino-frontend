@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
               private _route: ActivatedRoute,
               private router: Router,
               private _authService: AuthService) {
-                this.token = this._authService.getToken();
+              this.token = this._authService.getToken();
   }
 
   ngOnInit() {
@@ -35,6 +35,8 @@ export class UserComponent implements OnInit {
     this._route.data
       .subscribe(
         (data: Data) => {
+          console.log("data");
+          console.log(data['user'].user);
           this.user = data['user'].user;
         }
       );

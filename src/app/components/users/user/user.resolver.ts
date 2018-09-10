@@ -15,7 +15,7 @@ export class UserResolver implements Resolve<User> {
     ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> | Promise<User> | User {
-    let token = this._authService.getToken();
+    let token = this._authService.getToken();   
     return this._userService.getSingleUser(token, +route.params['id']);
   }
 }

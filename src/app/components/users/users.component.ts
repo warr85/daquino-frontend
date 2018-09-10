@@ -45,6 +45,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
       this.subscription = this._userService.getUsers(this.token, page).subscribe(
         response => {
+          console.log(response);
           if (response.status === "success"){
             this.users = response.users;
             this.loading = false;
