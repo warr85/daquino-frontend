@@ -32,7 +32,8 @@
                   </tr>
                   <tr *ngFor="let user of users">
                     <td> <a
-                      [routerLink]="['/security/users', user.id]"                                           
+                      [routerLink]="['/security/users/', user.id]"
+                      queryParamsHandling="preserve"                                           
                       >
                       {{ user.id }}
                     </a> </td>
@@ -40,10 +41,13 @@
                     <td> {{user.iduds006.description}} </td>
                   </tr>
                 </table>
+                
               </div>   
                <!-- /.box-body --> 
                <div class="box-footer">
-                  <button type="button" class="btn btn-app" [routerLink]="['/security/users/new']"  >
+                  <a style="cursor:pointer" (click)="nextPage()">next</a>
+                  <a style="cursor:pointer" (click)="previousPage()">prev</a>
+                  <button type="button" class="btn btn-app" (click)="addNew()"  >
                     <i class="fa fa-hdd-o"></i> Add New
                   </button>
                 </div>

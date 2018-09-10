@@ -4,6 +4,7 @@ import { User } from './users.model';
 import { UserService } from './../../services/user.service';
 import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs';
+import { merge } from 'rxjs/operators';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   loading: boolean;
   public token;
+  public page: number;
   public users: User[];
   constructor(
       private _route: ActivatedRoute,
@@ -24,6 +26,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       private _authService: AuthService
 ) {
      this.token = this._authService.getToken();
+     this.page = 1;
   }
 
   ngOnInit() {
@@ -40,11 +43,15 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   getAllUsers(){
-    this._route.params.forEach((params: Params) => {
-      let page = +params['page'];
-      if (!page) page = 1;
+    console.log(this._route.params);
+    this._route.queryParams.subscribe(params => {
+      this.page = +params['page'];
+      console.log("params: " + params);
+      console.log(params);
+      console.log(this.page);
+      if (!this.page) this.page = 1;
 
-      this.subscription = this._userService.getUsers(this.token, page).subscribe(
+      this.subscription = this._userService.getUsers(this.token, this.page).subscribe(
         response => {
           console.log(response);
           if (response.status === "success"){
@@ -58,6 +65,18 @@ export class UsersComponent implements OnInit, OnDestroy {
         }
       );
     });
+  }
+
+  addNew() {
+    this._router.navigate(['new'], {relativeTo: this._route, queryParamsHandling:'preserve'})
+  }
+
+  nextPage() {
+    this._router.navigate(['/security/users'], { queryParams: { page: this.page + 1 } });
+  }
+
+  previousPage() {
+    this._router.navigate(['/security/users'], { queryParams: { page: this.page - 1 } });
   }
 
   ngOnDestroy(){

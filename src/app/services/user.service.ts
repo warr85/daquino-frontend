@@ -38,10 +38,12 @@ export class UserService{
 	}
 
 
-	getUsers(token, page = null) {
-		let params = "authorization=" + token;
-		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });
+	getUsers(token, page = null) {		
 		if (page == null) page = 1;
+		console.log("this is page: " + page);
+		let params = "authorization=" + token + "&page=" + page;
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });
+		
 		return this._http.post(
 			this.url + "/security/user/list", 
 			params, 
