@@ -7,11 +7,12 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
-    <div class="alert alert-success" *ngIf="identity && identity.sub">
-      Bienvenido {{ identity.email }}
-
-    </div>
+    <div class="btn btn-danger btn-xs btn-block" *ngIf="e === true">{{ errorMsg }}</div>
+    <div class="btn btn-success btn-xs btn-block" *ngIf="identity && identity.sub">
+        Welcome Back {{ identity.description }}! Redirecting ...
+  
+      </div>
+    <p class="login-box-msg">Sign in to start your session</p>   
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">    
       <div class="form-group has-feedback">
         <input 

@@ -27,7 +27,9 @@ export class LoginComponent implements OnInit {
 
     public credentials;
     public identity;
-    public token;
+	public token;
+	public e: boolean;
+	public errorMsg;
 
     constructor(
         private _route: ActivatedRoute,
@@ -39,7 +41,9 @@ export class LoginComponent implements OnInit {
             'username' : '',
             'password' : '',
             'hashed' : true
-        };
+		};
+		
+		this.e = false;
     }
 
     ngOnInit() {
@@ -96,44 +100,54 @@ export class LoginComponent implements OnInit {
     	//alert(this._userService.signup());
 		this.credentials.hashed = true;		
     	this._authService.loginCheck(this.credentials).subscribe(
-    		response => {    			
-    			this.identity = response;
-    			if (this.identity.length <= 1){
-    				console.log("error en el servidor");
-    			}{
+    		response => {    
+				console.log(response);
 
-    				if(!this.identity.status){    					
-    					localStorage.setItem('identity' , JSON.stringify(this.identity));
-    					console.log(this.identity);
-    					//Get Token
-    					this.credentials.hashed = false;
-    					this._authService.loginCheck(this.credentials).subscribe(
-				    		response => {    			
-				    			this.token = response;
-				    			if (this.token.length <= 1){
-				    				console.log("error en el servidor obteniendo token");
-				    			}{
-				    				if(!this.token.status){    					
-										localStorage.setItem('token' , JSON.stringify(this.token));
-										//redirect development
-										window.location.href = "/";
-										//redirect production
-				    					//window.location.href = "/daquino-prod/";
-				    					console.log(this.token);
-				    				}
-				    			}
-				    		},
-				    		error => {
-				    			console.log(<any>error)
-				    		}
-				    	);
+				if(response.status === 'error'){
+					this.e = true;
+					this.errorMsg = response.data;
+				}else{
+					this.e = false;
+    				this.identity = response;
+					if (this.identity.length <= 1){
+						console.log("error en el servidor");
+					}{
+
+						if(!this.identity.status){    					
+							localStorage.setItem('identity' , JSON.stringify(this.identity));
+							console.log(this.identity);
+							//Get Token
+							this.credentials.hashed = false;
+							this._authService.loginCheck(this.credentials).subscribe(
+								response => {    			
+									this.token = response;
+									if (this.token.length <= 1){
+										console.log("error en el servidor obteniendo token");
+									}{
+										if(!this.token.status){    					
+											localStorage.setItem('token' , JSON.stringify(this.token));
+											//redirect development
+											window.location.href = "/";
+											//redirect production
+											//window.location.href = "/daquino-prod/";
+											console.log(this.token);
+										}
+									}
+								},
+								error => {
+									console.log(<any>error)
+								}
+							);
 
 
-    				}
-    			}
+						}
+					}
+				}
     		},
     		error => {
-    			console.log(<any>error)
+				console.log(<any>error);
+				this.e = true;
+				this.errorMsg = "Error: Please check your inputs";
     		}
     	);
   }
