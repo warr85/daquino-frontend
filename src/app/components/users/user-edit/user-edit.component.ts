@@ -135,7 +135,9 @@ constructor(
       console.log(f.value);
       this._userService.updateUser(this.token, f.value).subscribe(
         response => {
-          console.log(response);
+          console.log(response);    
+          this.changesSaved = true;      
+          this._router.navigate(["../"], {relativeTo: this._route, queryParamsHandling: 'preserve'});
         }          
       );
 
@@ -163,8 +165,10 @@ constructor(
   }*/
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    
+    if(!this.changesSaved){
       return confirm('Do you want to discard the changes?');
+    }
+    return true;
 
     
   }

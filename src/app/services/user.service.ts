@@ -11,6 +11,7 @@ export class UserService{
 	public identity;
 	public token;
 	public userCreated = new Subject();
+	public userEdited = new Subject();
 
 	constructor(private _http: Http){
 		this.url = GLOBAL.url;
@@ -110,6 +111,30 @@ export class UserService{
 		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });		
 		return this._http.post(
 			this.url + "/security/user/permission/" + username + "/" + role, 
+			params, 
+			{headers : headers}
+		).pipe(			
+			map(res => res.json())
+		);
+	}
+
+	disableUser(token, userid){
+		let params = "authorization=" + token;
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });		
+		return this._http.post(
+			this.url + "/security/user/disable/" + userid, 
+			params, 
+			{headers : headers}
+		).pipe(			
+			map(res => res.json())
+		);
+	}
+
+	enableUser(token, userid){
+		let params = "authorization=" + token;
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });		
+		return this._http.post(
+			this.url + "/security/user/enable/" + userid, 
 			params, 
 			{headers : headers}
 		).pipe(			

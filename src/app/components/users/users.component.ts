@@ -17,7 +17,10 @@ export class UsersComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   loading: boolean;
   public token;
-  public page: number;
+  public page;
+  public pages;
+  public pageNext;
+  public pagePrev;
   public users: User[];
   constructor(
       private _route: ActivatedRoute,
@@ -27,6 +30,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 ) {
      this.token = this._authService.getToken();
      this.page = 1;
+     this.pages = [];
   }
 
   ngOnInit() {
@@ -36,8 +40,23 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     this._userService.userCreated.subscribe(
       (user: User) => {
-        console.log(user);
+        //console.log(user);
         this.users.push(user);
+      }
+    );
+
+
+    this._userService.userEdited.subscribe(
+      (user: User) => {
+        console.log(this.users);
+        let userEdited: User;
+        const ufilter = this.users.filter((u: User) => {
+          if(u.description === user.description){
+            u.iduds006.description = user.iduds006.description
+            console.log(u);
+          }
+        }); 
+        //this.users       
       }
     );
   }
@@ -46,8 +65,8 @@ export class UsersComponent implements OnInit, OnDestroy {
     console.log(this._route.params);
     this._route.queryParams.subscribe(params => {
       this.page = +params['page'];
-      console.log("params: " + params);
-      console.log(params);
+      //console.log("params: " + params);
+      //console.log(params);
       console.log(this.page);
       if (!this.page) this.page = 1;
 
@@ -58,6 +77,27 @@ export class UsersComponent implements OnInit, OnDestroy {
             this.users = response.users;
             this.loading = false;
           }
+          //total de paginas
+          this.pages=[];
+          for(let i=0; i< response.total_pages; i++){
+            this.pages.push(i);
+          }
+          console.log(this.pages);
+          //pagina anterior
+          if(this.page >= 2){
+            this.pagePrev = this.page - 1;
+          }else{
+            this.pagePrev = this.page;
+          }
+          
+          //pagina sigueinte
+          if(this.page < response.total_pages){
+            this.pageNext = this.page + 1;
+          }else{
+            this.pageNext = this.page;
+          }
+
+          
           console.log(this.users);
         },
         error => {
@@ -71,13 +111,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this._router.navigate(['new'], {relativeTo: this._route, queryParamsHandling:'preserve'})
   }
 
-  nextPage() {
-    this._router.navigate(['/security/users'], { queryParams: { page: this.page + 1 } });
-  }
-
-  previousPage() {
-    this._router.navigate(['/security/users'], { queryParams: { page: this.page - 1 } });
-  }
+  
 
   ngOnDestroy(){
     this.subscription.unsubscribe();

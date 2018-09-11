@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params, Data } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { User } from '../../../auth/user';
+import { User } from '../users.model';
 import { AuthService } from '../../../auth/auth.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class UserComponent implements OnInit {
   constructor(private _userService: UserService,
               private _route: ActivatedRoute,
               private router: Router,
-              private _authService: AuthService) {
+              private _authService: AuthService
+            ) {
               this.token = this._authService.getToken();
   }
 
@@ -41,6 +42,30 @@ export class UserComponent implements OnInit {
         }
       );
 
+    
+  }
+
+  onDisable(id: number) {
+    console.log("user id:" + id);
+    this._userService.disableUser(this.token, id).subscribe(
+      response => {
+        console.log(response);
+        this.user.iduds006 = response.user.iduds006.id;
+        this._userService.userEdited.next(response.user);
+      }
+    )
+    
+  }
+
+  onEnable(id: number) {
+    console.log("user id:" + id);
+    this._userService.enableUser(this.token, id).subscribe(
+      response => {
+        console.log(response);
+        this.user.iduds006 = response.user.iduds006.id;
+        this._userService.userEdited.next(response.user);
+      }
+    )
     
   }
 

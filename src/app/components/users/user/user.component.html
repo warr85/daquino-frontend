@@ -1,5 +1,61 @@
-<h5 >{{ user.description }}</h5>
-<h5 *ngFor="let u of user.membership">{{ u.name }}</h5>
 
+    
+<div class="row">
+    <div class="col-md-12">
+        <section class="content">    
+            <div class="box box-warning ">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        Showind user # {{user.id}}				
+                    </h3>
+                </div>
+                <!-- /.box-header -->   
+                <div class="box-body">
+                <div class="loading" *ngIf="loading" >
+                    <img src="../../../assets/img/spinner50.gif" />
+                </div>   
+                <table class="table table-hover table-condensed table-striped">
+                
+                    <tr>
+                        <th>id</th>
+                        <th>Username</th>
+                        <th>Memberships</th>
+                        <th>Actions</th>
+                    </tr> 
+                    <td>
+                        {{user.id}}
+                    </td>        
+                    <td>
+                        {{user.description}}
+                    </td>    
+                    <td>
+                        <div *ngIf="user.membership && user.membership.length >=1">
+                            <ul>
+                                <li *ngFor="let u of user.membership">
+                                    {{u}}
+                                </li>
+                            </ul>                           
+                        </div>
 
-<button class="btn btn-primary" (click)="onEdit()">Edit User</button>
+                        <div *ngIf="user.membership && user.membership.length == 0">
+                            No Memberships enabled
+                        </div>                        
+                    </td>
+                    <td>
+                        <span *ngIf="user.iduds006==1" >
+                            <button 
+                                class="btn btn-danger btn-xs" 
+                                (click)="onDisable(user.id)" > Disable </button>
+                        </span>
+
+                        <span *ngIf="user.iduds006==2" >
+                            <button class="btn btn-success btn-xs" (click)="onEnable(user.id)" >Enable </button>
+                        </span>
+                        <button class="btn btn-primary btn-xs" (click)="onEdit()"> Edit </button>
+                    </td>
+                </table>
+            </div>
+        </div>
+        </section>
+    </div>
+</div>
