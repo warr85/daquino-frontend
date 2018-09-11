@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 //import { AuthService } from './../../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-appmenu',
@@ -10,17 +11,21 @@ import { Component, OnInit } from '@angular/core';
 export class AppmenuComponent implements OnInit {
 
   //isLoggedIn$: Observable<boolean>;
-
+  public identity;
+  public username;
   constructor(
-    //private authService: AuthService
-    ) { }
+    private _authService: AuthService
+    ) { 
+      this.identity = this._authService.getIdentity();
+    }
 
   ngOnInit() {
-    //this.isLoggedIn$ = this.authService.isLoggedIn;
+    
+    this.username = this.identity.description;
   }
 
   onLogout() {
-    //this.authService.logout();
+    
   }
 
 }
