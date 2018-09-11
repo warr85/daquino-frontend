@@ -23,10 +23,9 @@ export class UserService{
 	register(token, user) {
 		
 		let json = JSON.stringify(user);		
-		let params = "json=" + json + "&authorization=" + token;
-		console.log(params);
-
+		let params = "json=" + json + "&authorization=" + token;		
 		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });
+		
 		return this._http.post(
 			this.url + "/security/user/new", 
 			params, 
@@ -35,6 +34,24 @@ export class UserService{
 			map(res => res.json())			
 		);
 
+	}
+
+	updateUser(token, user){
+		console.log("ESTO ES USU:")
+		console.log(user);
+		let json = JSON.stringify(user);
+		console.log(json);
+		let params = "json=" + json + "&authorization=" + token;
+		console.log(params);
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });
+
+		return this._http.post(
+			this.url + "/security/user/update/permission",
+			params,
+			{headers: headers}
+		).pipe(
+			map(res => res.json())
+		);
 	}
 
 
@@ -61,6 +78,19 @@ export class UserService{
 		console.log(id);
 		return this._http.post(
 			this.url + "/security/user/show/" + id, 
+			params, 
+			{headers : headers}
+		).pipe(			
+			map(res => res.json())
+		);
+	}
+
+
+	getRoles(token) {
+		let params = "authorization=" + token;
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });		
+		return this._http.post(
+			this.url + "/security/user/getRoles",
 			params, 
 			{headers : headers}
 		).pipe(			

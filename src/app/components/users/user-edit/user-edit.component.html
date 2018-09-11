@@ -46,7 +46,7 @@
 		<div class="col-xs-12 col-sm-6 col-md-6 form-group">
 		<label>Memberships</label>
 		<select multiple name="topics" class="form-control" [(ngModel)]="user.topics">
-			<option *ngFor="let topic of topics" [value]="topic.value">{{topic.display}}</option>
+			<option *ngFor="let topic of topics" [value]="topic.value">{{topic.value}}</option>
 		</select>
 		</div>
 				{{ username }} {{ membership }}

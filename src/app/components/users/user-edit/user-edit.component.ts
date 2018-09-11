@@ -23,9 +23,6 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
   
 
   public topics = [
-    { value: 'Admin', display: 'Admin' },
-    { value: 'purchase', display: 'Purchase' },
-    { value: 'other', display: 'Other' },
   ];
 
   controls;
@@ -66,6 +63,8 @@ constructor(
         }
       );
 
+      this.getRoles();
+
       this.user = {
         description: '',  
         id: 0,      
@@ -97,31 +96,50 @@ constructor(
   }
 
   
- 
+  getRoles(){
+  this._userService.getRoles(this.token).subscribe(
+    response => {
+      console.log(response);
+      this.topics = response.topics;
+      console.log(this.topics);
+    }
+  );
+ }
 
  
   
   onSubmit(f: NgForm) {
     console.log(f);
     console.log(f.value);
-
-    this._userService.register(this.token, f.value).subscribe(
-      response => {
-        console.log(response);
-        this.status = response.status;
-        this.email = response.email;
-        if ( response.status !== 'success' ) {
-          this.status = 'error';
-        }else{        
-          this._userService.userCreated.next(response.user);
-          this.changesSaved = true;
-          this._router.navigate(["../"], {relativeTo: this._route});
+    console.log("editmode: " + this.editMode);
+    if(!this.editMode){
+      this._userService.register(this.token, f.value).subscribe(
+        response => {
+          console.log(response);
+          this.status = response.status;
+          this.email = response.email;
+          if ( response.status !== 'success' ) {
+            this.status = 'error';
+          }else{        
+            this._userService.userCreated.next(response.user);
+            this.changesSaved = true;
+            this._router.navigate(["../"], {relativeTo: this._route});
+          }
+        },
+        error => {
+          console.log( <any>error);
         }
-      },
-      error => {
-        console.log( <any>error);
-      }
-    );
+      );
+    }else{
+      console.log("esto es f.value:");
+      console.log(f.value);
+      this._userService.updateUser(this.token, f.value).subscribe(
+        response => {
+          console.log(response);
+        }          
+      );
+
+    }
     
 
   }
