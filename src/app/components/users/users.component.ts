@@ -21,6 +21,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   public pages;
   public pageNext;
   public pagePrev;
+  public created: boolean = false;  
   public users: User[];
   constructor(
       private _route: ActivatedRoute,
@@ -42,6 +43,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       (user: User) => {
         //console.log(user);
         this.users.push(user);
+        this.created = true;
       }
     );
 
@@ -52,8 +54,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         let userEdited: User;
         const ufilter = this.users.filter((u: User) => {
           if(u.description === user.description){
-            u.iduds006.description = user.iduds006.description
-            console.log(u);
+            u.iduds006.description = user.iduds006.description            
           }
         }); 
         //this.users       
