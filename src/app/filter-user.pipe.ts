@@ -12,7 +12,7 @@ export class FilterUserPipe implements PipeTransform {
     }
     const resultArray = [];
     for (const i of value){
-      if (i['description'].includes(filteredString)){
+      if (i['description'].includes(filteredString) || i['iduds006']['description'].includes(filteredString)){
         resultArray.push(i);        
       }
     }
