@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { UserComponent } from './components/users/user/user.component';
 import { UserResolver } from './components/users/user/user.resolver';
 import { ContractEditComponent } from './components/contracts/contract-edit/contract-edit.component';
+import { FilterUserPipe } from './filter-user.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { ContractEditComponent } from './components/contracts/contract-edit/cont
     UserEditComponent,
     ErrorPageComponent,
     UserComponent,
-    ContractEditComponent
+    ContractEditComponent,
+    FilterUserPipe
   ],
   imports: [
     A2Edatetimepicker,
@@ -51,7 +54,8 @@ import { ContractEditComponent } from './components/contracts/contract-edit/cont
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    NgxPaginationModule
   ],
   providers: [UserService, AuthService, AuthGuard, CanDeactivateGuard, UserResolver],
   bootstrap: [AppComponent]

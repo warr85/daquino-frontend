@@ -15,14 +15,18 @@ import { merge } from 'rxjs/operators';
 export class UsersComponent implements OnInit, OnDestroy {
  
   private subscription: Subscription;
+  p: number = 1;
   loading: boolean;
   public token;
+  public filteredUser: string;
   public page;
   public pages;
   public pageNext;
   public pagePrev;
   public created: boolean = false;  
   public users: User[];
+  
+  
   constructor(
       private _route: ActivatedRoute,
       private _router: Router,
@@ -32,6 +36,8 @@ export class UsersComponent implements OnInit, OnDestroy {
      this.token = this._authService.getToken();
      this.page = 1;
      this.pages = [];
+     this.filteredUser = "";
+
   }
 
   ngOnInit() {
