@@ -5,7 +5,7 @@ import { UserService } from './../../../services/user.service';
 import { Observable } from 'rxjs';
 import { CanComponentDeactivate, CanDeactivateGuard } from './can-deactivate-guard.service';
 import { AuthService } from '../../../auth/auth.service';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-edit',
@@ -145,6 +145,7 @@ constructor(
     
 
   }
+
 
 
   /*usernameTaken (control: FormControl): Promise<any> | Observable<any> {

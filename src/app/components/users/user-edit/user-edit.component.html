@@ -19,11 +19,28 @@
 						<label for="id">* username:</label>
 						<input 
 							type="text" class="form-control input-sm" id="description" 
-							name="description" [(ngModel)]="user.description"						
+							name="description" [(ngModel)]="user.description"
+							#username="ngModel"						
 							placeholder="username..." 
 							[readonly] = "editMode"
+							[required] = "!editMode"
+							minlength="4"
+							maxlength="18"
 						>
-						
+						<span 
+							class="help-block" 
+							*ngIf="username.errors && username.errors.required && username.touched"
+						>Username is not valid</span>
+
+						<span 
+							class="help-block" 
+							*ngIf="username.errors && username.errors.minlength && username.touched"
+						>Username should be minimum 4 characters long</span>
+
+						<span 
+							class="help-block" 
+							*ngIf="username.errors && username.errors.maxlength && username.touched"
+						>Username must be shorter than 18 characters</span>
 					</div>
 				</div>
 
@@ -33,8 +50,27 @@
 						<input 
 							type="password" class="form-control input-sm" id="password" 
 							name="password" [(ngModel)]="user.password"						
-							placeholder="password..." 							
+							placeholder="password..." 
+							[required] = "!editMode"
+							minlength="6"
+							maxlength="12"
+							#password="ngModel"
 						>
+
+						<span 
+							class="help-block" 
+							*ngIf="password.errors && password.errors.required && password.touched"
+						>Password is not valid</span>
+
+						<span 
+							class="help-block" 
+							*ngIf="password.errors && password.errors.minlength && password.touched"
+						>Password should be minimum 6 characters long</span>
+
+						<span 
+							class="help-block" 
+							*ngIf="password.errors && password.errors.maxlength && password.touched"
+						>Password must be shorter than 12 characters</span>
 						
 					</div>
 				</div>
@@ -55,7 +91,7 @@
 		<!-- /.box-body -->
 
 		<div class="box-footer">
-			<button type="submit" class="btn btn-app" >
+			<button type="submit" class="btn btn-app" [disabled]="!f.valid" >
 				<i class="fa fa-hdd-o"></i> {{ editMode ? "update" : "Save" }}
 			</button>
 		</div>
