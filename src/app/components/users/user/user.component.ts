@@ -50,7 +50,7 @@ export class UserComponent implements OnInit {
     this._userService.disableUser(this.token, id).subscribe(
       response => {
         console.log(response);
-        this.user.iduds006 = response.user.iduds006.id;
+        this.user.iduds006.id = response.user.iduds006.id;
         this._userService.userEdited.next(response.user);
       }
     )
@@ -62,7 +62,7 @@ export class UserComponent implements OnInit {
     this._userService.enableUser(this.token, id).subscribe(
       response => {
         console.log(response);
-        this.user.iduds006 = response.user.iduds006.id;
+        this.user.iduds006.id = response.user.iduds006.id;
         this._userService.userEdited.next(response.user);
       }
     )

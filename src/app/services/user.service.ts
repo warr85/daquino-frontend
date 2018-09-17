@@ -91,7 +91,7 @@ export class UserService{
 		let params = "authorization=" + token;
 		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });		
 		return this._http.post(
-			this.url + "/security/user/getRoles",
+			this.url + "/security/user/all/roles",
 			params, 
 			{headers : headers}
 		).pipe(			

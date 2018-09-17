@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     ifLogged() {
         let identity = this._authService.getIdentity();
         if(identity != null && identity.sub){
-			this._router.navigate(["/"]);
+			this._router.navigate(["/daquino-prod/"]);
 		}
 	}
 
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
 			//redirect development
 			window.location.href = "/login";
 			//redirect production
-			//window.location.href = "/daquino-prod/";
+			//this._router.navigate(["/login"]);
 		}
 
 		/*this._route.params.forEach((params: Params) => {

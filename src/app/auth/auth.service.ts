@@ -30,12 +30,14 @@ export class AuthService {
     const currentTime = (Math.floor(Date.now() / 1000));
     console.log(currentTime);
     
-    if ((this.identity !== "undefined") || (this.identity !== null) ){ 
+    if (this.identity !== null ){ 
       if (this.identity.exp - currentTime > 0){
         this.loggedIn = true; 
       }else{
         this.loggedIn = false;
       }        
+    }else{
+      this.loggedIn = false;
     } 
     if (this.identity === null) this.loggedIn = false;
     const promise = new Promise(
