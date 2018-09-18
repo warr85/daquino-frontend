@@ -49,7 +49,7 @@
                         <span *ngIf="user.iduds006.id === 2" >
                             <button class="btn btn-success btn-xs" (click)="onEnable(user.id)" >Enable </button>
                         </span>
-                        <button class="btn btn-primary btn-xs" (click)="onEdit()"> Edit </button>
+                        <button *ngIf="user.iduds006.id === 1" class="btn btn-primary btn-xs" (click)="onEdit()"> Edit </button>
                     </td>
                 </table>
             </div>
