@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'login/:id', component: LoginComponent },
   { path: 'security/users', canActivate: [AuthGuard], canActivateChild:[AuthGuard], component: UsersComponent, children: [
-      { path: 'new', component: UserEditComponent },
+      { path: 'new', component: UserEditComponent, canDeactivate: [CanDeactivateGuard] },
       { path: ':id', component: UserComponent, resolve: {user: UserResolver} },
       { path: ':id/edit', component: UserEditComponent, canDeactivate: [CanDeactivateGuard] }
   ]},

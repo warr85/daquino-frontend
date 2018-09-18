@@ -17,10 +17,11 @@ import { NgForm, FormControl } from '@angular/forms';
 
 export class UserEditComponent implements OnInit, CanComponentDeactivate {
 
+  @ViewChild('f') editForm: NgForm;
 
   public title: string;
-  public email; 
-  
+  public email;
+
 
   public topics = [
   ];
@@ -37,112 +38,112 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
   allowEdit = false;
   public checked = false;
 
-  
 
-constructor(
-  private _route: ActivatedRoute, 
-  private _router: Router,	
-  private _userService: UserService,  
-  private _authService: AuthService
-) {
 
-  this.title = 'Registro de usuarios';
-  this.user = new User("") ;
-  this.token = this._authService.getToken();
-}
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _userService: UserService,
+    private _authService: AuthService
+  ) {
+
+    this.title = 'Registro de usuarios';
+    this.user = new User("");
+    this.token = this._authService.getToken();
+  }
 
   ngOnInit() {
-       
+
 
     this._route.params
       .subscribe(
         (params: Params) => {
           this.id = params['id'];
-          this.editMode =  params['id'] != null;  
-          
+          this.editMode = params['id'] != null;
+
         }
       );
 
-      this.getRoles();
+    this.getRoles();
 
-      this.user = {
-        description: '',  
-        id: 0,      
-        topics: []
-      }
-
-     
-    this._route.fragment.subscribe();
-    
-   if(this.editMode){     
-    this._userService.getSingleUser(this.token, this.id).subscribe(
-      response => {
-        if (response.status === "success"){
-          console.log(response.user.membership);
-          this.user.description = response.user.description;
-          const prueba = response.user.membership;
-          this.user.topics = prueba;          
-          
-        }
-        
-      },
-      error => {
-        console.log("error");
-      }
-    );    
-  }else{
-    
-  }
-  }
-
-  
-  getRoles(){
-  this._userService.getRoles(this.token).subscribe(
-    response => {
-      console.log(response);
-      this.topics = response.topics;
-      console.log(this.topics);
+    this.user = {
+      description: '',
+      id: 0,
+      topics: []
     }
-  );
- }
 
- 
-  
+
+    this._route.fragment.subscribe();
+
+    if (this.editMode) {
+      this._userService.getSingleUser(this.token, this.id).subscribe(
+        response => {
+          if (response.status === "success") {
+            console.log(response.user.membership);
+            this.user.description = response.user.description;
+            const prueba = response.user.membership;
+            this.user.topics = prueba;
+
+          }
+
+        },
+        error => {
+          console.log("error");
+        }
+      );
+    } else {
+
+    }
+  }
+
+
+  getRoles() {
+    this._userService.getRoles(this.token).subscribe(
+      response => {
+        console.log(response);
+        this.topics = response.topics;
+        console.log(this.topics);
+      }
+    );
+  }
+
+
+
   onSubmit(f: NgForm) {
     console.log(f);
     console.log(f.value);
     console.log("editmode: " + this.editMode);
-    if(!this.editMode){
+    if (!this.editMode) {
       this._userService.register(this.token, f.value).subscribe(
         response => {
           console.log(response);
           this.status = response.status;
           this.email = response.email;
-          if ( response.status !== 'success' ) {
+          if (response.status !== 'success') {
             this.status = 'error';
-          }else{        
+          } else {
             this._userService.userCreated.next(response.user);
             this.changesSaved = true;
-            this._router.navigate(["../"], {relativeTo: this._route});
+            this._router.navigate(["../"], { relativeTo: this._route });
           }
         },
         error => {
-          console.log( <any>error);
+          console.log(<any>error);
         }
       );
-    }else{
+    } else {
       console.log("esto es f.value:");
       console.log(f.value);
       this._userService.updateUser(this.token, f.value).subscribe(
         response => {
-          console.log(response);    
-          this.changesSaved = true;      
-          this._router.navigate(["../"], {relativeTo: this._route, queryParamsHandling: 'preserve'});
-        }          
+          console.log(response);
+          this.changesSaved = true;
+          this._router.navigate(["../"], { relativeTo: this._route, queryParamsHandling: 'preserve' });
+        }
       );
 
     }
-    
+
 
   }
 
@@ -165,13 +166,13 @@ constructor(
 
   }*/
 
-  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if(!this.changesSaved){
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {    
+    if(this.editForm.dirty && !this.changesSaved) {
       return confirm('Do you want to discard the changes?');
     }
     return true;
 
-    
+
   }
 
 }
