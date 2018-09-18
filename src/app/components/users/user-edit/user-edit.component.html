@@ -15,9 +15,10 @@
 			<div class="row">
 
 				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">						
+					<div class="form-group" *ngIf="!editMode">						
 						<label for="id">* username:</label>
 						<input 
+							
 							type="text" class="form-control input-sm" id="description" 
 							name="description" [(ngModel)]="user.description"
 							#username="ngModel"						
@@ -26,11 +27,20 @@
 							[required] = "!editMode"
 							minlength="4"
 							maxlength="18"
+							uniqueUsernameValidator
 						>
 						<span 
 							class="help-block" 
-							*ngIf="username.errors && username.errors.required && username.touched"
+							*ngIf="!editMode && 
+									username.errors && 
+									username.errors.required && 
+									username.touched"
 						>Username is not valid</span>
+
+						<span 
+							class="help-block" 
+							*ngIf="username.errors && username.errors.uniqueUserName && username.touched"
+						>Username Already Taken</span>
 
 						<span 
 							class="help-block" 
@@ -42,6 +52,22 @@
 							*ngIf="username.errors && username.errors.maxlength && username.touched"
 						>Username must be shorter than 18 characters</span>
 					</div>
+
+
+					<!-- Si estamos Editando a un usuario quitamos ciertas validaciones-->
+					<div class="form-group" *ngIf="editMode">						
+						<label for="id">* username:</label>
+						<input 
+							
+							type="text" class="form-control input-sm" id="description" 
+							name="description" [(ngModel)]="user.description"
+							#username="ngModel"													
+							readonly							
+						>						
+					</div>
+
+
+
 				</div>
 
 				<div class="col-xs-12 col-sm-6 col-md-6">

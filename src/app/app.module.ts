@@ -28,6 +28,8 @@ import { UserComponent } from './components/users/user/user.component';
 import { UserResolver } from './components/users/user/user.resolver';
 import { ContractEditComponent } from './components/contracts/contract-edit/contract-edit.component';
 import { FilterUserPipe } from './filter-user.pipe';
+import { UniqueUsernameValidatorDirective } from './components/users/unique-username-validator.directive';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { FilterUserPipe } from './filter-user.pipe';
     ErrorPageComponent,
     UserComponent,
     ContractEditComponent,
-    FilterUserPipe
+    FilterUserPipe,
+    UniqueUsernameValidatorDirective
   ],
   imports: [
     A2Edatetimepicker,

@@ -5,7 +5,7 @@ import { UserService } from './../../../services/user.service';
 import { Observable } from 'rxjs';
 import { CanComponentDeactivate, CanDeactivateGuard } from './can-deactivate-guard.service';
 import { AuthService } from '../../../auth/auth.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-edit',
