@@ -3,7 +3,8 @@ export class User{
 		public username: string,
 		public membership: string,
 		public group: string,
-		public password: string
+		public password: string,
+		public email: string
 	){
 
 	}
