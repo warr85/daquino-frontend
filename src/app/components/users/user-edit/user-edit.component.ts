@@ -37,7 +37,7 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
   public changesSaved = false;
   allowEdit = false;
   public checked = false;
-
+  public buttonLoading: boolean;
 
 
   constructor(
@@ -46,7 +46,7 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
     private _userService: UserService,
     private _authService: AuthService
   ) {
-
+    this.buttonLoading = false;
     this.title = 'Registro de usuarios';
     this.user = new User("");
     this.token = this._authService.getToken();
@@ -110,6 +110,7 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
 
 
   onSubmit(f: NgForm) {
+    this.buttonLoading = true;
     console.log(f);
     console.log(f.value);
     console.log("editmode: " + this.editMode);
@@ -120,8 +121,10 @@ export class UserEditComponent implements OnInit, CanComponentDeactivate {
           this.status = response.status;
           this.email = response.email;
           if (response.status !== 'success') {
+            this.buttonLoading = false;
             this.status = 'error';
           } else {
+            console.log(response.user);
             this._userService.userCreated.next(response.user);
             this.changesSaved = true;
             this._router.navigate(["../"], { relativeTo: this._route });

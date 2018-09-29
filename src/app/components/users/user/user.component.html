@@ -1,7 +1,12 @@
 
     
 <div class="row">
+    
     <div class="col-md-12">
+        <div class="label label-success" *ngIf="passUpdated">
+           Password Updated Succefully. An email has been sent notifying the user
+            <i class="fa fa-times" (click)="passUpdated = false" ></i>
+        </div>
         <section class="content">    
             <div class="box box-warning ">
                 <div class="box-header with-border">
@@ -39,17 +44,37 @@
                             No Memberships enabled
                         </div>                        
                     </td>
-                    <td>                        
+                    <td>       
+                        <button *ngIf="user.iduds006.id === 1"
+                            [disabled] = "resettingPasswd"
+                             class="btn btn-warning btn-xs" 
+                             (click)="onEdit()"> <i class="fa fa-edit" > </i> 
+                        </button>
+
+                        <button *ngIf="user.iduds006.id === 1"
+                            [disabled] = "resettingPasswd"
+                             class="btn btn-default btn-xs" 
+                             (click)="onResetPasswd(user.description)"> <i class="fa fa-key" ></i>                              
+                        </button>                 
                         <span *ngIf="user.iduds006.id === 1" >
                             <button 
+                                [disabled] = "resettingPasswd"
                                 class="btn btn-danger btn-xs" 
-                                (click)="onDisable(user.id)" > Disable </button>
+                                (click)="onDisable(user.id)" > <i class="fa fa-close"> </i> 
+                            </button>
                         </span>
 
                         <span *ngIf="user.iduds006.id === 2" >
-                            <button class="btn btn-success btn-xs" (click)="onEnable(user.id)" >Enable </button>
+                            
+                            <button 
+                                [disabled] = "resettingPasswd"
+                                class="btn btn-success btn-xs" 
+                                (click)="onEnable(user.id)" > <i class="fa fa-check"> </i> 
+                            </button>
                         </span>
-                        <button *ngIf="user.iduds006.id === 1" class="btn btn-primary btn-xs" (click)="onEdit()"> Edit </button>
+
+                       
+                        <img src="assets/img/spinner50.gif" *ngIf="resettingPasswd" width="10%" />
                     </td>
                 </table>
             </div>

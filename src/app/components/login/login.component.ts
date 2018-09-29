@@ -30,6 +30,10 @@ export class LoginComponent implements OnInit {
 	public token;
 	public e: boolean;
 	public errorMsg;
+	forgot: boolean;
+	buttonLoading: boolean;
+	msgEmail: boolean;
+	useremail = "";
 
     constructor(
         private _route: ActivatedRoute,
@@ -37,6 +41,9 @@ export class LoginComponent implements OnInit {
 		private _userService: UserService,
 		private _authService: AuthService
   ) {
+		  this.forgot = false;
+		  this.msgEmail = false;
+		  this.buttonLoading = false;
         this.credentials = {
             'username' : '',
             'password' : '',
@@ -54,8 +61,8 @@ export class LoginComponent implements OnInit {
 		this.ifLogged();
 		
 		this.loginForm = new FormGroup({
-			'username' : new FormControl(null, Validators.required),
-			'password' : new FormControl(null, Validators.required)
+			'username' : new FormControl(null),
+			'password' : new FormControl(null)
 		});
 
     }
@@ -94,15 +101,40 @@ export class LoginComponent implements OnInit {
 		});*/
 	}
 
-	onSubmit() {
+
+	onResetPassword() {
+		this.buttonLoading = true;
 		this.credentials = this.loginForm.value;
 		this.credentials.hashed = true;
+		
+		console.log(this.credentials.username);
+		this._authService.loginReset(this.credentials.username).subscribe(
+			response => { 				 
+				this.buttonLoading = false;
+				if(response.status == "success"){
+					this.msgEmail = true;  
+					console.log(response);
+					this.useremail = response.email;
+				}else{
+					this.errorMsg="Username does not exist!"
+					this.e = true;
+				}
+			}
+		);
+	}
+
+
+	onSubmit() {
+		this.buttonLoading = true;
+		this.credentials = this.loginForm.value;
+		this.credentials.hashed = true;
+		
     	//alert(this._userService.signup());
 		this.credentials.hashed = true;		
     	this._authService.loginCheck(this.credentials).subscribe(
     		response => {    
 				console.log(response);
-
+				this.buttonLoading = false;
 				if(response.status === 'error'){
 					this.e = true;
 					this.errorMsg = response.data;

@@ -60,6 +60,19 @@ export class AuthService {
 			.pipe(map(res => res.json()));
   }
 
+  loginReset(userToReset){
+    console.log("user to reset: " + userToReset);
+		let json = JSON.stringify(userToReset);
+		let params = "json=" + json;
+
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });
+
+		//console.log(params + "=>" + this.url + "=>" headers); 
+
+		return this._http.post(this.url + "/reset_instructions/" + userToReset, params, {headers : headers})
+			.pipe(map(res => res.json()));
+  }
+
 
   getIdentity(){
 		let identity = JSON.parse(localStorage.getItem('identity'));

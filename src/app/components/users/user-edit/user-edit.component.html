@@ -1,129 +1,88 @@
 <!-- Main content -->
-<section class="content">	
+<section class="content">
 	<div class="box box-warning ">
 		<div class="box-header with-border">
 			<h3 class="box-title">
-				Register User 
+				Register User
 				<span class="alert alert-success" *ngIf="status=='success'">Record saved!</span>
 				<span class="alert alert-danger" *ngIf="status=='error'">Error! {{ status.msg }}</span>
 			</h3>
 		</div>
-	<!-- /.box-header -->
-	<!-- form start -->
-	<form  #f="ngForm" (ngSubmit)="onSubmit(f)">
-		<div class="box-body">
-			<div class="row">
+		<!-- /.box-header -->
+		<!-- form start -->
+		<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+			<div class="box-body">
+				<div class="row">
 
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group" *ngIf="!editMode">						
-						<label for="id">* username:</label>
-						<input 
-							
-							type="text" class="form-control input-sm" id="description" 
-							name="description" [(ngModel)]="user.description"
-							#username="ngModel"						
-							placeholder="username..." 
-							[readonly] = "editMode"
-							[required] = "!editMode"
-							minlength="4"
-							maxlength="18"
-							uniqueUsernameValidator
-						>
-						<span 
-							class="help-block" 
-							*ngIf="!editMode && 
+					<div class="col-xs-12 col-sm-4 col-md-4">
+						<div class="form-group" *ngIf="!editMode">
+							<label for="id">* username:</label>
+							<input type="text" class="form-control input-sm" id="description" name="description" [(ngModel)]="user.description" #username="ngModel"
+							 placeholder="username..." [readonly]="editMode" [required]="!editMode" minlength="4" maxlength="18" uniqueUsernameValidator>
+							<span class="help-block" *ngIf="!editMode && 
 									username.errors && 
 									username.errors.required && 
-									username.touched"
-						>Username is not valid</span>
+									username.touched">Username is not valid</span>
 
-						<span 
-							class="help-block" 
-							*ngIf="username.errors && username.errors.uniqueUserName && username.touched"
-						>Username Already Taken</span>
+							<span class="help-block" *ngIf="username.errors && username.errors.uniqueUserName && username.touched">Username Already
+								Taken</span>
 
-						<span 
-							class="help-block" 
-							*ngIf="username.errors && username.errors.minlength && username.touched"
-						>Username should be minimum 4 characters long</span>
+							<span class="help-block" *ngIf="username.errors && username.errors.minlength && username.touched">Username should
+								be minimum 4 characters long</span>
 
-						<span 
-							class="help-block" 
-							*ngIf="username.errors && username.errors.maxlength && username.touched"
-						>Username must be shorter than 18 characters</span>
+							<span class="help-block" *ngIf="username.errors && username.errors.maxlength && username.touched">Username must be
+								shorter than 18 characters</span>
+						</div>
+
+
+						<!-- Si estamos Editando a un usuario quitamos ciertas validaciones-->
+						<div class="form-group" *ngIf="editMode">
+							<label for="id">* username:</label>
+							<input type="text" class="form-control input-sm" id="description" name="description" [(ngModel)]="user.description" #username="ngModel"
+							 readonly>
+						</div>
+
+
+
 					</div>
 
+					<div class="col-xs-12 col-sm-8 col-md-8" *ngIf="!editMode">
+						<div class="form-group">
+							<label for="id">* email:</label>
+							<input type="text" class="form-control input-sm" id="email" name="email" [(ngModel)]="user.email" placeholder="email..."
+							 [required]="!editMode" #email="ngModel" email>
 
-					<!-- Si estamos Editando a un usuario quitamos ciertas validaciones-->
-					<div class="form-group" *ngIf="editMode">						
-						<label for="id">* username:</label>
-						<input 
-							
-							type="text" class="form-control input-sm" id="description" 
-							name="description" [(ngModel)]="user.description"
-							#username="ngModel"													
-							readonly							
-						>						
+							<span class="help-block" *ngIf="email.errors && email.errors.required && email.touched">Email is Required</span>
+
+							<span class="help-block" *ngIf="email.errors && email.errors.email && email.touched">Email is not valid</span>
+
+						</div>
 					</div>
-
-
 
 				</div>
+				<div class="row">
 
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">						
-						<label for="id">* password:</label>
-						<input 
-							type="password" class="form-control input-sm" id="password" 
-							name="password" [(ngModel)]="user.password"						
-							placeholder="password..." 
-							[required] = "!editMode"
-							minlength="6"
-							maxlength="12"
-							#password="ngModel"
-						>
 
-						<span 
-							class="help-block" 
-							*ngIf="password.errors && password.errors.required && password.touched"
-						>Password is not valid</span>
-
-						<span 
-							class="help-block" 
-							*ngIf="password.errors && password.errors.minlength && password.touched"
-						>Password should be minimum 6 characters long</span>
-
-						<span 
-							class="help-block" 
-							*ngIf="password.errors && password.errors.maxlength && password.touched"
-						>Password must be shorter than 12 characters</span>
-						
+					<div class="col-xs-12 col-sm-8 col-md-8 form-group">
+						<label>Memberships</label>
+						<select multiple name="topics" class="form-control" [(ngModel)]="user.topics">
+							<option *ngFor="let topic of topics" [value]="topic.value">{{topic.value}}</option>
+						</select>
 					</div>
 				</div>
-				
+				<!-- /.row -->
 			</div>
-			<div class="row">
-				
+			<!-- /.box-body -->
 
-		<div class="col-xs-12 col-sm-6 col-md-6 form-group">
-		<label>Memberships</label>
-		<select multiple name="topics" class="form-control" [(ngModel)]="user.topics">
-			<option *ngFor="let topic of topics" [value]="topic.value">{{topic.value}}</option>
-		</select>
-		</div>				
+			<div class="box-footer">
+				<button type="submit" class="btn btn-app" [disabled]="!f.valid || buttonLoading">
+					<i class="fa fa-hdd-o"></i> {{ editMode ? "update" : "Save" }}
+				</button>				
+					<img src="assets/img/spinner50.gif" *ngIf="buttonLoading" width="15%" />
 			</div>
-			<!-- /.row -->
-		</div>				
-		<!-- /.box-body -->
-
-		<div class="box-footer">
-			<button type="submit" class="btn btn-app" [disabled]="!f.valid" >
-				<i class="fa fa-hdd-o"></i> {{ editMode ? "update" : "Save" }}
-			</button>
-		</div>
-		<!-- /.box-footer -->
-	</form>
+			<!-- /.box-footer -->
+		</form>
 	</div>
 	<!-- /.box-warning -->
-    
+
 </section>

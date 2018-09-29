@@ -12,6 +12,8 @@ import { AuthService } from '../../../auth/auth.service';
 export class UserComponent implements OnInit {
   public token;
   public user: User;
+  resettingPasswd: boolean;
+  passUpdated: boolean;
 
   constructor(private _userService: UserService,
               private _route: ActivatedRoute,
@@ -19,6 +21,8 @@ export class UserComponent implements OnInit {
               private _authService: AuthService
             ) {
               this.token = this._authService.getToken();
+              this.resettingPasswd = false;
+              this.passUpdated = false;
   }
 
   ngOnInit() {
@@ -64,6 +68,21 @@ export class UserComponent implements OnInit {
         console.log(response);
         this.user.iduds006.id = response.user.iduds006.id;
         this._userService.userEdited.next(response.user);
+      }
+    )
+    
+  }
+
+  onResetPasswd(description: string) {
+    this.resettingPasswd = true;
+    console.log("user id:" + description);
+    this._userService.resetUser(this.token, description).subscribe(
+      response => {
+        console.log(response);
+        this.resettingPasswd = false;
+        this.passUpdated = true;
+        //this.user.iduds006.id = response.user.iduds006.id;
+        //this._userService.userEdited.next(response.user);
       }
     )
     

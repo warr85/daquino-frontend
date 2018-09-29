@@ -142,6 +142,18 @@ export class UserService{
 		);
 	}
 
+	resetUser(token, userdescription){
+		let params = "authorization=" + token;
+		let headers = new Headers({ 'Content-Type' : 'application/x-www-form-urlencoded' });		
+		return this._http.post(
+			this.url + "/security/user/reset/" + userdescription, 
+			params, 
+			{headers : headers}
+		).pipe(			
+			map(res => res.json())
+		);
+	}
+
 	onUserCreated(){
 		/*this.users.push({username:"userData.email", password:"asdfasdfasdf",  group: 1, membership:1});
     	console.log(this.users);*/
