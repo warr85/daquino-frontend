@@ -29,6 +29,8 @@ import { UserResolver } from './components/users/user/user.resolver';
 import { ContractEditComponent } from './components/contracts/contract-edit/contract-edit.component';
 import { FilterUserPipe } from './filter-user.pipe';
 import { UniqueUsernameValidatorDirective } from './components/users/unique-username-validator.directive';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { UserShowComponent } from './components/password-reset/user-show/user-show.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { UniqueUsernameValidatorDirective } from './components/users/unique-user
     UserComponent,
     ContractEditComponent,
     FilterUserPipe,
-    UniqueUsernameValidatorDirective
+    UniqueUsernameValidatorDirective,
+    PasswordResetComponent,
+    UserShowComponent
   ],
   imports: [
     A2Edatetimepicker,

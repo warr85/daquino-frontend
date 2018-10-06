@@ -14,11 +14,16 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { UserComponent } from './components/users/user/user.component';
 import { UserResolver } from './components/users/user/user.resolver';
 import { ContractEditComponent } from './components/contracts/contract-edit/contract-edit.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { UserShowComponent } from './components/password-reset/user-show/user-show.component';
 
 const routes: Routes = [
   { path: '', canActivate:[AuthGuard], component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login/:id', component: LoginComponent },
+  { path: 'security/password-reset', canActivate: [AuthGuard], canActivateChild:[AuthGuard], component: PasswordResetComponent, children: [    
+    { path: ':id', component: UserShowComponent, resolve: {user: UserResolver} }    
+]},
   { path: 'security/users', canActivate: [AuthGuard], canActivateChild:[AuthGuard], component: UsersComponent, children: [
       { path: 'new', component: UserEditComponent, canDeactivate: [CanDeactivateGuard] },
       { path: ':id', component: UserComponent, resolve: {user: UserResolver} },

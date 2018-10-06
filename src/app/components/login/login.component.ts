@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
 			//redirect development
 			window.location.href = "/login";
 			//redirect production
-			//this._router.navigate(["/login"]);
+			//window.location.href = "/daquino-prod/login";
 		}
 
 		/*this._route.params.forEach((params: Params) => {
